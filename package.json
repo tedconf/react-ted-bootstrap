@@ -1,6 +1,6 @@
 {
   "name": "react-ted-bootstrap",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonbellah/react-ted-bootstrap.git"
+    "url": "git+https://github.com/tedconf/react-ted-bootstrap.git"
   },
   "author": "Jon Bellah <jon@ted.com>",
   "license": "MIT",
