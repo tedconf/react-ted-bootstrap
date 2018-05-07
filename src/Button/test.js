@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, configure } from 'enzyme';
+import { mount, shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import Button from './index';
@@ -7,6 +7,10 @@ import Button from './index';
 configure({ adapter: new Adapter() });
 
 describe('Button', () => {
+  it('should render without throwing an error', () => {
+    expect(shallow(<Button>A Button</Button>).exists(<button>A Button</button>)).toBe(true)
+  });
+
   it('should register onClick functions passed as props', () => {
     const click = jest.fn();
     const wrapper = mount(<Button onClick={click}>A Button</Button>);
