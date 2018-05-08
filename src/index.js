@@ -1,10 +1,10 @@
 // if you need a component export it here
-import Header from './Header';
+import Navbar from './Navbar';
 import Button from './Button';
 import Select from './Select';
 
 export {
-  Header,
+  Navbar,
   Button,
   Select,
 };
