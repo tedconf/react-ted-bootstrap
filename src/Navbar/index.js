@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 
 import Logo from './Logo';
 
-const Header = (props) => {
+const Navbar = (props) => {
   const {
     title,
   } = props;
 
   return (
-    <StyledHeader>
+    <StyledNavbar>
       <Container>
         <Brand>
           <Logo />
           {title}
         </Brand>
       </Container>
-    </StyledHeader>
+    </StyledNavbar>
   );
 };
 
-const StyledHeader = glamorous.header({
+const StyledNavbar = glamorous.header({
   background: '#111',
   border: '1px solid transparent',
   color: 'white',
@@ -48,8 +48,8 @@ const Brand = glamorous.div({
   padding: '2px 15px',
 });
 
-Header.propTypes = {
+Navbar.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default Navbar;
