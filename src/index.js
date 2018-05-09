@@ -1,8 +1,12 @@
 // if you need a component export it here
-import Header from './Header';
+import Navbar from './Navbar';
 import Button from './Button';
+import Select from './Select';
+import DataTable from './DataTable';
 
 export {
-  Header,
+  Navbar,
   Button,
+  Select,
+  DataTable,
 };
