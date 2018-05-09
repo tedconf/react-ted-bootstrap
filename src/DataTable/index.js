@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
+import PropTypes from 'prop-types';
 
 export default class DataTable extends Component {
   constructor() {
@@ -20,7 +21,16 @@ export default class DataTable extends Component {
   }
 
   buildHeadings(headings) {
-    return headings.map(h => <StyledTh>{h}</StyledTh>);
+    return <tr>{headings.map(h => <StyledTh>{h}</StyledTh>)}</tr>;
+  }
+
+  buildRows(rows) {
+
+    return rows.map(row => (
+      <StyledRow className={row.className ? row.className : ''}>
+        {row.data.map(cell => <StyledTd>{cell}</StyledTd>)}
+      </StyledRow>
+    ));
   }
 
   render() {
@@ -31,6 +41,9 @@ export default class DataTable extends Component {
         <StyledThead>
           {this.buildHeadings(headings)}
         </StyledThead>
+        <tbody>
+          {this.buildRows(rows)}
+        </tbody>
       </StyledTable>
     );
   }
@@ -55,8 +68,38 @@ const StyledThead = glamorous.thead({
   verticalAlign: 'middle',
 });
 
+const StyledRow = glamorous.tr({
+  backgroundColor: 'transparent',
+}, (props) => {
+  switch (props.className) {
+    case 'active':
+      return {
+        backgroundColor: 'whitesmoke',
+      };
+    case 'success':
+      return {
+        backgroundColor: '#e0efd5',
+      };
+    case 'info':
+      return {
+        backgroundColor: '#deeef5',
+      };
+    case 'warning':
+      return {
+        backgroundColor: '#fcf7e7',
+      };
+    case 'danger':
+      return {
+        backgroundColor: '#f2d2cf',
+      };
+    default:
+      break;
+  }
+});
+
 const StyledTh = glamorous.th({
   padding: '15px 10px',
+  textAlign: 'left',
 });
 
 const StyledTd = glamorous.td({
@@ -65,3 +108,8 @@ const StyledTd = glamorous.td({
   padding: '15px 10px',
   verticalAlign: 'top',
 });
+
+DataTable.propTypes = {
+  headings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -9,14 +9,31 @@ const headings = [
   'Test3',
 ];
 
+const rows = [
+  {
+    data: [
+      'Cell1',
+      'Cell2',
+      'Cell3',
+    ],
+  },
+  {
+    data: [
+      'Cell1',
+      'Cell2',
+      'Cell3',
+    ],
+    className: 'success',
+  },
+];
+
 storiesOf('DataTable', module)
   .add(
     'Default',
-    withInfo(`
-      Standard title
-  `)(() => (
+    withInfo()(() => (
     <DataTable
       headings={headings}
+      rows={rows}
     >
       Default
     </DataTable>
