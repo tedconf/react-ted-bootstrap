@@ -64,14 +64,14 @@ const StyledSelect = glamorous.select({
 });
 
 const StyledCaret = glamorous.span({
+  borderLeft: '1px solid #ccc',
+  marginTop: '11px',
   position: 'absolute',
   right: 0,
-  top: 0,
-  marginTop: '6px',
-  width: '50px',
   textAlign: 'center',
+  top: 0,
+  width: '50px',
   zIndex: 10,
-  borderLeft: '1px solid #ccc',
 });
 
 const StyledLabel = glamorous.label({
