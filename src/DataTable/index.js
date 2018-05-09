@@ -7,25 +7,36 @@ export default class DataTable extends Component {
     super();
 
     this.state = {
-      sorted: false,
-      sortDirection: 'asc',
+      sorted: '',
     };
   }
 
   onSort(column) {
-    return this.props.onSort ? this.props.onSort(column) : this.doSort(column);
+    this.setState({ sorted: column });
+
+    if (this.props.onSort) {
+      this.props.onSort(column);
+    }
   }
 
-  doSort(column) {
-    return false;
-  }
-
-  buildHeadings(headings) {
-    return <tr>{headings.map(h => <StyledTh>{h}</StyledTh>)}</tr>;
+  buildHeadings(headings, sortable) {
+    return (
+      <tr>
+        {headings.map((h, index) => {
+          const sort = sortable && sortable[index] ? this.onSort(index) : false;
+          return (
+            <StyledTh
+              onClick={sort}
+            >
+              {h}
+            </StyledTh>
+         );
+        })}
+      </tr>
+    );
   }
 
   buildRows(rows) {
-
     return rows.map(row => (
       <StyledRow className={row.className ? row.className : ''}>
         {row.data.map(cell => <StyledTd>{cell}</StyledTd>)}
@@ -34,12 +45,16 @@ export default class DataTable extends Component {
   }
 
   render() {
-    const { headings, rows } = this.props;
+    const {
+      headings,
+      rows,
+      sortable,
+    } = this.props;
 
     return (
       <StyledTable>
         <StyledThead>
-          {this.buildHeadings(headings)}
+          {this.buildHeadings(headings, sortable)}
         </StyledThead>
         <tbody>
           {this.buildRows(rows)}
@@ -112,4 +127,6 @@ const StyledTd = glamorous.td({
 DataTable.propTypes = {
   headings: PropTypes.arrayOf(PropTypes.string).isRequired,
   rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sortable: PropTypes.arrayOf(PropTypes.bool),
+  onSort: PropTypes.func,
 };

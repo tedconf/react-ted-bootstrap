@@ -25,6 +25,21 @@ const rows = [
     ],
     className: 'success',
   },
+  {
+    data: [
+      'Cell1',
+      'Cell2',
+      'Cell3',
+    ],
+  },
+  {
+    data: [
+      'Cell1',
+      'Cell2',
+      'Cell3',
+    ],
+    className: 'info',
+  },
 ];
 
 storiesOf('DataTable', module)
