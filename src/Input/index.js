@@ -2,27 +2,41 @@ import React from 'react';
 import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
 
-function inputType(props, handlers) {
+const Input = (props) => {
   switch (props.type) {
     case 'password':
-      return <StyledInput type="password" placeholder={props.placeholder} {...handlers} />;
+      return (
+        <StyledInput
+          type="password"
+          placeholder={props.placeholder}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
+        />
+      );
     case 'textarea':
-      return <StyledTextarea rows="3" placeholder={props.placeholder} {...handlers}>{props.children}</StyledTextarea>;
+      return (
+        <StyledTextarea
+          type="text"
+          placeholder={props.placeholder}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
+        >
+          {props.children}
+        </StyledTextarea>
+      );
     default:
-      return <StyledInput type="text" placeholder={props.placeholder} {...handlers} />;
+      return (
+        <StyledInput
+          type="text"
+          placeholder={props.placeholder}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
+        />
+      );
   }
-}
-
-const Input = (props) => {
-  const {
-    onInput,
-    onBlur,
-    onFocus,
-  } = props;
-
-  const handlers = [onInput, onBlur, onFocus];
-
-  return inputType(props, handlers);
 };
 
 const styles = {
@@ -53,7 +67,7 @@ Input.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   label: PropTypes.string,
-  onInput: PropTypes.func,
+  onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   children: PropTypes.node,

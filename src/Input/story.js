@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+
+import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 
 import Input from './index';
@@ -7,31 +9,29 @@ import Input from './index';
 storiesOf('Input', module)
   .add(
     'Text',
-    withInfo(`
-      Standard title
-  `)(() => (
-    <Input
-      type="text"
-    />
+    withInfo()(() => (
+      <Input
+        type="text"
+        placeholder="Text input"
+        onChange={action('onChange')}
+        onFocus={action('onFocus')}
+        onBlur={action('onBlur')}
+      />
     )),
   )
   .add(
     'Password',
-    withInfo(`
-      Standard title
-  `)(() => (
-    <Input
-      type="password"
-    />
+    withInfo()(() => (
+      <Input
+        type="password"
+      />
     )),
   )
   .add(
     'Textarea',
-    withInfo(`
-      Standard title
-  `)(() => (
-    <Input
-      type="textarea"
-    />
+    withInfo()(() => (
+      <Input
+        type="textarea"
+      />
     )),
   );
