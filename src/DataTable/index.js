@@ -8,27 +8,44 @@ export default class DataTable extends Component {
 
     this.state = {
       sorted: '',
+      sortDirection: 'desc',
     };
   }
 
-  onSort(column) {
-    this.setState({ sorted: column });
+  onSort(column, isSortable) {
+    if (!isSortable || !this.props.onSort) return;
 
-    if (this.props.onSort) {
-      this.props.onSort(column);
-    }
+    const { sorted } = this.state;
+
+    this.setState({
+      sorted: column,
+      sortDirection: this.setSortDirection(sorted, column),
+    });
+
+    this.props.onSort(column);
+  }
+
+  setSortDirection(oldCol, newCol) {
+    const { sortDirection } = this.state;
+
+    return sortDirection === 'asc' && oldCol === newCol ? 'desc' : 'asc';
   }
 
   buildHeadings(headings, sortable) {
     return (
       <tr>
         {headings.map((h, index) => {
-          const sort = sortable && sortable[index] ? this.onSort(index) : false;
+          const isSortable = (sortable !== undefined) && sortable[index];
+
           return (
             <StyledTh
-              onClick={sort}
+              onClick={() => this.onSort(index, isSortable)}
+              isSortable={isSortable}
             >
-              {h}
+              <FlexDiv>
+                {h}
+                {this.renderCaret(index)}
+              </FlexDiv>
             </StyledTh>
          );
         })}
@@ -42,6 +59,18 @@ export default class DataTable extends Component {
         {row.data.map(cell => <StyledTd>{cell}</StyledTd>)}
       </StyledRow>
     ));
+  }
+
+  renderCaret(column) {
+    if (this.state.sorted !== column) return;
+
+    const rotate = this.state.sortDirection === 'desc' ? 'rotateX(180deg)' : '';
+
+    return (
+      <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg" style={{ transform: rotate, marginLeft: '4px' }}>
+        <path d="M9.814.198A.583.583 0 0 0 9.374 0H.626a.583.583 0 0 0-.44.198A.663.663 0 0 0 0 .667c0 .18.062.336.186.468L4.56 5.802a.583.583 0 0 0 .88 0l4.374-4.667A.663.663 0 0 0 10 .667a.663.663 0 0 0-.186-.47z" fill="#000" fill-rule="nonzero"/>
+      </svg>
+    );
   }
 
   render() {
@@ -115,6 +144,12 @@ const StyledRow = glamorous.tr({
 const StyledTh = glamorous.th({
   padding: '15px 10px',
   textAlign: 'left',
+}, (props) => {
+  if (props.isSortable) {
+    return {
+      cursor: 'pointer',
+    };
+  }
 });
 
 const StyledTd = glamorous.td({
@@ -124,9 +159,17 @@ const StyledTd = glamorous.td({
   verticalAlign: 'top',
 });
 
+const FlexDiv = glamorous.div({
+  display: 'flex',
+  alignItems: 'center',
+});
+
 DataTable.propTypes = {
   headings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** An object containing two keys: data (an array of column values) and className */
   rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /** An array of boolean values that correspond to each column */
   sortable: PropTypes.arrayOf(PropTypes.bool),
+  /** A callback function when a column heading is sorted */
   onSort: PropTypes.func,
 };

@@ -1,56 +1,56 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import DataTable from './index';
 
 const headings = [
-  'Test1',
-  'Test2',
-  'Test3',
+  'First name',
+  'Last name',
+  'Twitter',
 ];
 
 const rows = [
   {
     data: [
-      'Cell1',
-      'Cell2',
-      'Cell3',
+      'Jon',
+      'Bellah',
+      '@jonbellah',
     ],
   },
   {
     data: [
-      'Cell1',
-      'Cell2',
-      'Cell3',
+      'Rômulo',
+      'Machado',
+      '@romulomachado_',
     ],
     className: 'success',
   },
   {
     data: [
-      'Cell1',
-      'Cell2',
-      'Cell3',
+      'Vince',
+      'Speelman',
+      '@vinspee',
     ],
-  },
-  {
-    data: [
-      'Cell1',
-      'Cell2',
-      'Cell3',
-    ],
-    className: 'info',
   },
 ];
+
+const sortable = [true, false, true];
+
 
 storiesOf('DataTable', module)
   .add(
     'Default',
-    withInfo()(() => (
-    <DataTable
-      headings={headings}
-      rows={rows}
-    >
-      Default
-    </DataTable>
+    withInfo(`
+      Supported classes: active, success, info, warning, danger.
+    `)(() => (
+      <DataTable
+        headings={headings}
+        rows={rows}
+        onSort={action('sort')}
+        sortable={sortable}
+      >
+        Default
+      </DataTable>
     )),
   );
