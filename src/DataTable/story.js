@@ -4,39 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import DataTable from './index';
 
-const headings = [
-  'First name',
-  'Last name',
-  'Twitter',
-];
-
-const rows = [
-  {
-    data: [
-      'Jon',
-      'Bellah',
-      '@jonbellah',
-    ],
-  },
-  {
-    data: [
-      'Rômulo',
-      'Machado',
-      '@romulomachado_',
-    ],
-    className: 'success',
-  },
-  {
-    data: [
-      'Vince',
-      'Speelman',
-      '@vinspee',
-    ],
-  },
-];
-
-const sortable = [true, false, true];
-
+import { headings, rows, sortable } from './sampleData';
 
 storiesOf('DataTable', module)
   .add(

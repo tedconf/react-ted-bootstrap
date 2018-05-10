@@ -16,13 +16,14 @@ export default class DataTable extends Component {
     if (!isSortable || !this.props.onSort) return;
 
     const { sorted } = this.state;
+    const sortDirection = this.setSortDirection(sorted, column);
 
     this.setState({
       sorted: column,
-      sortDirection: this.setSortDirection(sorted, column),
+      sortDirection,
     });
 
-    this.props.onSort(column);
+    this.props.onSort(column, sortDirection);
   }
 
   setSortDirection(oldCol, newCol) {
@@ -39,6 +40,7 @@ export default class DataTable extends Component {
 
           return (
             <StyledTh
+              key={index}
               onClick={() => this.onSort(index, isSortable)}
               isSortable={isSortable}
             >
@@ -54,9 +56,9 @@ export default class DataTable extends Component {
   }
 
   buildRows(rows) {
-    return rows.map(row => (
-      <StyledRow className={row.className ? row.className : ''}>
-        {row.data.map(cell => <StyledTd>{cell}</StyledTd>)}
+    return rows.map((row, index) => (
+      <StyledRow key={index} className={row.className ? row.className : ''}>
+        {row.data.map((cell, cellindex) => <StyledTd key={cellindex}>{cell}</StyledTd>)}
       </StyledRow>
     ));
   }
@@ -68,7 +70,7 @@ export default class DataTable extends Component {
 
     return (
       <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg" style={{ transform: rotate, marginLeft: '4px' }}>
-        <path d="M9.814.198A.583.583 0 0 0 9.374 0H.626a.583.583 0 0 0-.44.198A.663.663 0 0 0 0 .667c0 .18.062.336.186.468L4.56 5.802a.583.583 0 0 0 .88 0l4.374-4.667A.663.663 0 0 0 10 .667a.663.663 0 0 0-.186-.47z" fill="#000" fill-rule="nonzero"/>
+        <path d="M9.814.198A.583.583 0 0 0 9.374 0H.626a.583.583 0 0 0-.44.198A.663.663 0 0 0 0 .667c0 .18.062.336.186.468L4.56 5.802a.583.583 0 0 0 .88 0l4.374-4.667A.663.663 0 0 0 10 .667a.663.663 0 0 0-.186-.47z" fill="#000" fillRule="nonzero"/>
       </svg>
     );
   }
@@ -170,6 +172,8 @@ DataTable.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.object).isRequired,
   /** An array of boolean values that correspond to each column */
   sortable: PropTypes.arrayOf(PropTypes.bool),
-  /** A callback function when a column heading is sorted */
+  /** A callback function when a column heading is sorted,
+   * returns column index and sort direction
+   */
   onSort: PropTypes.func,
 };
