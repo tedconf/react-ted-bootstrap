@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 import DataTable from './index';
 
-import { headings, rows, sortable } from './sampleData';
+import { headings, rows } from './sampleData';
 
 storiesOf('DataTable', module)
   .add(
@@ -16,7 +16,6 @@ storiesOf('DataTable', module)
         headings={headings}
         rows={rows}
         onSort={action('sort')}
-        sortable={sortable}
       >
         Default
       </DataTable>

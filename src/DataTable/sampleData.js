@@ -1,7 +1,15 @@
 export const headings = [
-  'First name',
-  'Last name',
-  'Twitter',
+  {
+    label: 'First name',
+    sortable: true,
+  },
+  {
+    label: 'Last name',
+  },
+  {
+    label: 'Twitter',
+    sortable: true,
+  },
 ];
 
 export const rows = [
@@ -28,5 +36,3 @@ export const rows = [
     ],
   },
 ];
-
-export const sortable = [true, false, true];

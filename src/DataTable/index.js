@@ -32,11 +32,11 @@ export default class DataTable extends Component {
     return sortDirection === 'asc' && oldCol === newCol ? 'desc' : 'asc';
   }
 
-  buildHeadings(headings, sortable) {
+  buildHeadings(headings) {
     return (
       <tr>
         {headings.map((h, index) => {
-          const isSortable = (sortable !== undefined) && sortable[index];
+          const isSortable = (h.sortable !== undefined) && h.sortable;
 
           return (
             <StyledTh
@@ -45,7 +45,7 @@ export default class DataTable extends Component {
               isSortable={isSortable}
             >
               <FlexDiv>
-                {h}
+                {h.label}
                 {this.renderCaret(index)}
               </FlexDiv>
             </StyledTh>
@@ -79,13 +79,12 @@ export default class DataTable extends Component {
     const {
       headings,
       rows,
-      sortable,
     } = this.props;
 
     return (
       <StyledTable>
         <StyledThead>
-          {this.buildHeadings(headings, sortable)}
+          {this.buildHeadings(headings)}
         </StyledThead>
         <tbody>
           {this.buildRows(rows)}
@@ -167,11 +166,12 @@ const FlexDiv = glamorous.div({
 });
 
 DataTable.propTypes = {
-  headings: PropTypes.arrayOf(PropTypes.string).isRequired,
-  /** An object containing two keys: data (an array of column values) and className */
+  /** An object containing two keys: label (string) and sortable (bool) */
+  headings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /** An object containing two keys: data (an array of column values)
+   * and className (string)
+   */
   rows: PropTypes.arrayOf(PropTypes.object).isRequired,
-  /** An array of boolean values that correspond to each column */
-  sortable: PropTypes.arrayOf(PropTypes.bool),
   /** A callback function when a column heading is sorted,
    * returns column index and sort direction
    */
