@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 function inputType(props, handlers) {
   switch (props.type) {
     case 'password':
-      return <StyledInput type="password" {...handlers} />;
+      return <StyledInput type="password" placeholder={props.placeholder} {...handlers} />;
     case 'textarea':
-      return <StyledTextarea {...handlers}>{props.children}</StyledTextarea>;
+      return <StyledTextarea rows="3" placeholder={props.placeholder} {...handlers}>{props.children}</StyledTextarea>;
     default:
-      return <StyledInput type="text" {...handlers} />;
+      return <StyledInput type="text" placeholder={props.placeholder} {...handlers} />;
   }
 }
 
@@ -31,7 +31,9 @@ const styles = {
   border: '1px solid #ccc',
   borderRadius: '4px',
   boxShadow: 'inset 0 1px 1px rgba(0,0,0,.075)',
-  height: '40px',
+  boxSizing: 'border-box',
+  fontSize: '14px',
+  lineHeight: 1.42857,
   padding: '9px 12px',
   transition: 'border-color ease-in-out .15s,box-shadow ease-in-out .15s',
   width: '100%',
@@ -41,7 +43,10 @@ const styles = {
     outline: 0,
   },
 };
-const StyledInput = glamorous.input(styles);
+const StyledInput = glamorous.input({
+  ...styles,
+  height: '40px',
+});
 const StyledTextarea = glamorous.textarea(styles);
 
 Input.propTypes = {
