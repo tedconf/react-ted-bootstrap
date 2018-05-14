@@ -23,6 +23,7 @@ module.exports = {
   externals: {
     react: 'commonjs react',
     'react-dom': 'commonjs react-dom',
+    'react-router-dom': 'commonjs react-router-dom',
     glamorous: 'commonjs glamorous',
     glamor: 'commonjs glamor',
   },
