@@ -39,7 +39,7 @@ const Brand = glamorous.div({
   fontWeight: 'bold',
   height: '58px',
   lineHeight: '20px',
-  padding: '2px 15px',
+  padding: '2px 15px 2px 0',
 });
 
 Navbar.propTypes = {
