@@ -143,6 +143,7 @@ const StyledRow = glamorous.tr({
 });
 
 const StyledTh = glamorous.th({
+  fontWeight: '700',
   padding: '15px 10px',
   textAlign: 'left',
 }, (props) => {
