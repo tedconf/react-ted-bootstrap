@@ -35,7 +35,7 @@ const StyledNavbar = glamorous.header({
 const Brand = glamorous.div({
   alignItems: 'center',
   display: 'flex',
-  fontSize: '27px',
+  fontSize: '25px',
   fontWeight: 'bold',
   height: '58px',
   lineHeight: '20px',
