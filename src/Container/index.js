@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 
 import mediaQueries from '../utils/media-queries';
 
-const Container = (props) => {
-  return <StyledContainer>{props.children}</StyledContainer>;
-}
+const Container = props => <StyledContainer>{props.children}</StyledContainer>;
 
 const StyledContainer = glamorous.div({
-  width: '100%',
-  paddingRight: '15px',
-  paddingLeft: '15px',
-  marginRight: 'auto',
   marginLeft: 'auto',
+  marginRight: 'auto',
+  paddingLeft: '15px',
+  paddingRight: '15px',
+  width: '100%',
 
   [mediaQueries.small]: { maxWidth: '540px' },
   [mediaQueries.medium]: { maxWidth: '720px' },
@@ -22,7 +20,7 @@ const StyledContainer = glamorous.div({
 });
 
 Container.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Container;
