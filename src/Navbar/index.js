@@ -3,6 +3,7 @@ import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
 
 import Logo from './Logo';
+import Container from '../Container';
 
 const Navbar = (props) => {
   const {
@@ -29,13 +30,6 @@ const StyledNavbar = glamorous.header({
   marginBottom: '20px',
   minHeight: '58px',
   position: 'relative',
-});
-
-const Container = glamorous.div({
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  paddingLeft: '15px',
-  paddingRight: '15px',
 });
 
 const Brand = glamorous.div({
