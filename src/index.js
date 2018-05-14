@@ -7,9 +7,10 @@ import Navbar from './Navbar';
 import Select from './Select';
 
 export {
-  Navbar,
   Button,
-  Select,
+  Container,
   DataTable,
   Input,
+  Navbar,
+  Select,
 };
