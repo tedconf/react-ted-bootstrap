@@ -4,9 +4,14 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 
+import { MemoryRouter } from 'react-router';
+
 import Nav from './index';
 
 storiesOf('Nav', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
   .add(
     'Primary Nav',
     withInfo()(() => (
