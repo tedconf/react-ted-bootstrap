@@ -1,8 +1,8 @@
 import React from 'react';
 import glamorous from 'glamorous';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const StyledNavItemLink = glamorous.a({
+const StyledNavItemLink = glamorous(NavLink)({
   color: '#000',
   padding: '3px',
   display: 'block',
