@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import glamorous from 'glamorous';
 
+import Item from './Item';
+import Link from './Link';
+
 const StyledNav = glamorous.ul({
+  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
   padding: '0 0 1em',
   margin: '0 0 1em',
   listStyleType: 'none',
@@ -17,14 +21,19 @@ const StyledNav = glamorous.ul({
   }
 });
 
-const Nav = (props) => {
-  const { type } = props;
+class Nav extends Component {
+  static Item = Item;
+  static Link = Link;
 
-  return (
-    <StyledNav type={type}>
-      {props.children}
-    </StyledNav>
-  );
+  render() {
+    const { type, children } = this.props;
+  
+    return (
+      <StyledNav type={type}>
+        {children}
+      </StyledNav>
+    );
+  }
 };
 
 export default Nav;

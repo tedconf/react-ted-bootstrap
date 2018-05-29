@@ -1,8 +1,8 @@
 import React from 'react';
 import glamorous from 'glamorous';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
-const NavItemLink = glamorous(NavLink)({
+const StyledNavItemLink = glamorous.a({
   color: '#000',
   padding: '3px',
   display: 'block',
@@ -33,10 +33,10 @@ const NavItemLink = glamorous(NavLink)({
   }
 });
 
-const SubNavItem = ({ to, label, type, exact = true }) => (
-  <NavItemLink exact={exact} to={to} type={type}>
+const Link = ({ to, label, type, exact = true }) => (
+  <StyledNavItemLink exact={exact} to={to} type={type}>
     {label}
-  </NavItemLink>
+  </StyledNavItemLink>
 );
 
-export default SubNavItem;
+export default Link;
