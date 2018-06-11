@@ -10,9 +10,16 @@ export default class Dropdown extends Component {
 
     this.state = {
       expanded: false,
+      selected: '',
     };
 
     this.toggleExpanded = this.toggleExpanded.bind(this);
+  }
+
+  onClick(e, value) {
+    e.preventDefault();
+
+    this.props.onClick(value);
   }
 
   toggleExpanded() {
