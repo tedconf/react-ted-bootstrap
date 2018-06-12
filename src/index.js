@@ -5,6 +5,7 @@ import DataTable from './DataTable';
 import Input from './Input';
 import Navbar from './Navbar';
 import Select from './Select';
+import Dropdown from './Dropdown';
 
 export {
   Button,
@@ -13,4 +14,5 @@ export {
   Input,
   Navbar,
   Select,
+  Dropdown,
 };

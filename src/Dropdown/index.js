@@ -56,7 +56,7 @@ export default class Dropdown extends Component {
     const { selected, expanded } = this.state;
     const label = selected ? selected : this.props.options[0].label;
     const options = this.props.options.map(opt => (
-      <DropdownItem onClick={e => this.onClick(e, opt.label)}>{opt.label}</DropdownItem>
+      <DropdownItem key={`${opt.label}${opt.index}`} onClick={e => this.onClick(e, opt.label)}>{opt.label}</DropdownItem>
     ));
 
     return (
