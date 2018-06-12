@@ -10,7 +10,7 @@ export default class Dropdown extends Component {
 
     this.state = {
       expanded: false,
-      selected: '',
+      selected: false,
     };
 
     this.toggleExpanded = this.toggleExpanded.bind(this);
@@ -27,29 +27,50 @@ export default class Dropdown extends Component {
   }
 
   render() {
+    const { selected, expanded } = this.state;
+    const label = selected ? selected : this.props.options[0].label;
+    const options = this.props.options.map(opt => <li>{opt.label}</li>);
+
     return (
-      <div>
-        <a>
-          TED2019 <Caret />
-        </a>
-        <ul>
-          <li>
-            <a>All entries</a>
-          </li>
-
-          <li>
-            <a>Human</a>
-          </li>
-
-          <li>
-            <a>System</a>
-          </li>
-
-          <li>
-            <a>TED2019</a>
-          </li>
-        </ul>
+      <div style={{ position: 'relative' }}>
+        <span onClick={() => this.toggleExpanded()}>
+          {label} <Caret />
+        </span>
+        <DropdownList expanded={expanded}>{options}</DropdownList>
       </div>
     );
   }
 }
+
+Dropdown.propTypes = {
+  onClick: PropTypes.func,
+};
+
+const DropdownList = glamorous.ul(
+  {
+    backgroundClip: 'padding-box',
+    backgroundColor: '#fff',
+    border: '1px solid rgba(0, 0, 0, 0.15)',
+    borderRadius: '4px',
+    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.175)',
+    display: 'none',
+    float: 'left',
+    fontSize: '14px',
+    left: 0,
+    listStyle: 'none',
+    margin: '2px 0 0',
+    minWidth: '160px',
+    padding: '5px 0',
+    position: 'absolute',
+    textAlign: 'left',
+    top: '100%',
+    zIndex: 1000,
+  },
+  (props) => {
+    if (props.expanded) {
+      return {
+        display: 'block',
+      };
+    }
+  },
+);
