@@ -11,6 +11,7 @@ storiesOf('Dropdown', module)
       Supported classes: active, success, info, warning, danger.
     `)(() => (
       <Dropdown
+        onClick={action('click')}
         options={[
           {
             label: 'yesterday',

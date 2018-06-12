@@ -14,12 +14,38 @@ export default class Dropdown extends Component {
     };
 
     this.toggleExpanded = this.toggleExpanded.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
   }
 
   onClick(e, value) {
     e.preventDefault();
 
+    this.setState({ expanded: false });
+
     this.props.onClick(value);
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (
+      this.wrapperRef &&
+      !this.wrapperRef.contains(event.target) &&
+      this.state.expanded
+    ) {
+      this.toggleExpanded();
+    }
   }
 
   toggleExpanded() {
@@ -29,13 +55,16 @@ export default class Dropdown extends Component {
   render() {
     const { selected, expanded } = this.state;
     const label = selected ? selected : this.props.options[0].label;
-    const options = this.props.options.map(opt => <li>{opt.label}</li>);
+    const options = this.props.options.map(opt => (
+      <DropdownItem onClick={e => this.onClick(e, opt.label)}>{opt.label}</DropdownItem>
+    ));
 
     return (
-      <div style={{ position: 'relative' }}>
-        <span onClick={() => this.toggleExpanded()}>
-          {label} <Caret />
-        </span>
+      <div style={{ position: 'relative' }} ref={this.setWrapperRef}>
+        <Label onClick={() => this.toggleExpanded()}>
+          <span style={{ marginRight: '6px' }}>{label}</span>
+          <Caret />
+        </Label>
         <DropdownList expanded={expanded}>{options}</DropdownList>
       </div>
     );
@@ -46,6 +75,18 @@ Dropdown.propTypes = {
   onClick: PropTypes.func,
 };
 
+const Label = glamorous.span({
+  alignItems: 'center',
+  color: '#444',
+  cursor: 'pointer',
+  display: 'flex',
+  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontSize: '14px',
+  fontWeight: 700,
+  lineHeight: 1,
+  margin: '10px 0',
+});
+
 const DropdownList = glamorous.ul(
   {
     backgroundClip: 'padding-box',
@@ -55,6 +96,7 @@ const DropdownList = glamorous.ul(
     boxShadow: '0 6px 12px rgba(0, 0, 0, 0.175)',
     display: 'none',
     float: 'left',
+    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
     fontSize: '14px',
     left: 0,
     listStyle: 'none',
@@ -66,7 +108,7 @@ const DropdownList = glamorous.ul(
     top: '100%',
     zIndex: 1000,
   },
-  (props) => {
+  props => {
     if (props.expanded) {
       return {
         display: 'block',
@@ -74,3 +116,18 @@ const DropdownList = glamorous.ul(
     }
   },
 );
+
+const DropdownItem = glamorous.li({
+  clear: 'both',
+  color: '#333333',
+  cursor: 'pointer',
+  display: 'block',
+  fontWeight: 'normal',
+  lineHeight: 1.42857,
+  padding: '3px 20px',
+  whiteSpace: 'nowrap',
+  ['&:hover']: {
+    color: '#262626',
+    backgroundColor: '#f5f5f5',
+  },
+});
