@@ -65,6 +65,7 @@ const StyledSelect = glamorous.select({
 
 const StyledCaret = glamorous.span({
   borderLeft: '1px solid #ccc',
+  lineHeight: '20px',
   marginTop: '11px',
   position: 'absolute',
   right: 0,
