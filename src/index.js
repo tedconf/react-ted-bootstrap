@@ -6,6 +6,7 @@ import Input from './Input';
 import Navbar from './Navbar';
 import Select from './Select';
 import Dropdown from './Dropdown';
+import TwistDown from './TwistDown';
 
 export {
   Button,
@@ -15,4 +16,5 @@ export {
   Navbar,
   Select,
   Dropdown,
+  TwistDown,
 };
