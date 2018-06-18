@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
 
+import Caret from '../utils/Caret';
+
 export default class TwistDown extends Component {
   constructor(props) {
     super(props);
@@ -25,9 +27,14 @@ export default class TwistDown extends Component {
   }
 
   render() {
+    const rotate = this.state.open ? 'none' : 'rotate(-90deg)';
+
     return (
       <TwistContainer>
-        <TwistButton onClick={this.toggleOpen}>{this.props.label}</TwistButton>
+        <TwistButton onClick={this.toggleOpen}>
+          <Caret rotate={rotate} />
+          <Label>{this.props.label}</Label>
+        </TwistButton>
         {this.renderContents()}
       </TwistContainer>
     );
@@ -41,13 +48,21 @@ const TwistContainer = glamorous.div({
 });
 
 const TwistButton = glamorous.button({
+  alignItems: 'center',
   appearance: 'none',
   border: 0,
   borderRadius: 0,
   color: '#111',
   cursor: 'pointer',
+  display: 'flex',
   fontSize: '14px',
   fontWeight: 500,
+  marginBottom: '12px',
   outline: 'none',
+  padding: 0,
   textDecoration: 'none',
+});
+
+const Label = glamorous.span({
+  marginLeft: '4px',
 });
