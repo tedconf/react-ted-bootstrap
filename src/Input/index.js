@@ -9,6 +9,7 @@ const Input = (props) => {
         <StyledInput
           type="password"
           placeholder={props.placeholder}
+          value={props.value}
           onChange={props.onChange}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
@@ -19,6 +20,7 @@ const Input = (props) => {
         <StyledTextarea
           type="text"
           placeholder={props.placeholder}
+          value={props.value}
           onChange={props.onChange}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
@@ -31,6 +33,7 @@ const Input = (props) => {
         <StyledInput
           type="text"
           placeholder={props.placeholder}
+          value={props.value}
           onChange={props.onChange}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
@@ -66,6 +69,7 @@ const StyledTextarea = glamorous.textarea(styles);
 Input.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
