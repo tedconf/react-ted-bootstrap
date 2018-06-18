@@ -36,7 +36,7 @@ const Brand = glamorous.div({
   alignItems: 'center',
   display: 'flex',
   fontSize: '25px',
-  fontWeight: 'bold',
+  fontWeight: '500',
   height: '58px',
   lineHeight: '20px',
   padding: '2px 15px 2px 0',
