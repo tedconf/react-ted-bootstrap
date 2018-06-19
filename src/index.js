@@ -7,6 +7,8 @@ import Navbar from './Navbar';
 import Select from './Select';
 import Dropdown from './Dropdown';
 import TwistDown from './TwistDown';
+import NavFlaps from './NavFlaps';
+import Tab from './NavFlaps/Tab';
 
 export {
   Button,
@@ -17,4 +19,6 @@ export {
   Select,
   Dropdown,
   TwistDown,
+  NavFlaps,
+  Tab,
 };
