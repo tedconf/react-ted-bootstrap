@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
 
 import Caret from '../utils/Caret';
@@ -8,7 +9,7 @@ export default class TwistDown extends Component {
     super(props);
 
     this.state = {
-      open: false,
+      open: this.props.open,
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
@@ -66,3 +67,9 @@ const TwistButton = glamorous.button({
 const Label = glamorous.span({
   marginLeft: '4px',
 });
+
+TwistDown.propTypes = {
+  label: PropTypes.string.isRequired,
+  content: PropTypes.node.isRequired,
+  open: PropTypes.bool,
+};
