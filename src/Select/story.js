@@ -19,6 +19,6 @@ storiesOf('Select', module)
   .add(
     'Default',
     withInfo()(() => (
-      <Select options={options} label="Test" showLabel onChange={action('onChange')} />
+      <Select options={options} label="Test" onChange={action('onChange')} />
     )),
   );

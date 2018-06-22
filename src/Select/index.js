@@ -5,7 +5,6 @@ import glamorous from 'glamorous';
 const Select = (props) => {
   const {
     label,
-    showLabel,
     options,
     onChange,
   } = props;
@@ -16,7 +15,7 @@ const Select = (props) => {
     </option>
   ));
 
-  const renderLabel = showLabel ? <StyledLabel htmlFor={label}>{label}</StyledLabel> : false;
+  const renderLabel = label ? <StyledLabel htmlFor={label}>{label}</StyledLabel> : false;
 
   return (
     <div>
@@ -85,8 +84,7 @@ const StyledLabel = glamorous.label({
 });
 
 Select.propTypes = {
-  label: PropTypes.string.isRequired,
-  showLabel: PropTypes.bool,
+  label: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   onChange: PropTypes.func,
 };
