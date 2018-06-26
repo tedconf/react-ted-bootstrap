@@ -46,6 +46,7 @@ const TwistContainer = glamorous.div({
   display: 'block',
   fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
   fontSize: '14px',
+  width: '100%',
 });
 
 const TwistButton = glamorous.button({
