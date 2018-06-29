@@ -1,9 +1,29 @@
 import React from 'react';
-import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
 import Logo from './Logo';
 import Container from '../Container';
+
+const styledNavbar = css`
+  background: #111;
+  border: 1px solid transparent;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
+  min-height: 58px;
+  position: relative;
+`;
+
+const brand = css`
+  align-items: center;
+  display: flex;
+  font-size: 25px;
+  font-weight: 500;
+  height: 58px;
+  line-height: 20px;
+  padding: 2px 15px 2px 0;
+`;
 
 const Navbar = (props) => {
   const {
@@ -11,36 +31,16 @@ const Navbar = (props) => {
   } = props;
 
   return (
-    <StyledNavbar>
+    <header className={styledNavbar}>
       <Container>
-        <Brand>
+        <div className={brand}>
           <Logo />
           {title}
-        </Brand>
+        </div>
       </Container>
-    </StyledNavbar>
+    </header>
   );
 };
-
-const StyledNavbar = glamorous.header({
-  background: '#111',
-  border: '1px solid transparent',
-  color: 'white',
-  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-  marginBottom: '20px',
-  minHeight: '58px',
-  position: 'relative',
-});
-
-const Brand = glamorous.div({
-  alignItems: 'center',
-  display: 'flex',
-  fontSize: '25px',
-  fontWeight: '500',
-  height: '58px',
-  lineHeight: '20px',
-  padding: '2px 15px 2px 0',
-});
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,

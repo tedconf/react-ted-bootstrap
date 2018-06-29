@@ -1,88 +1,86 @@
 import React, { Component } from 'react';
-import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
 import Icon from './Icon';
 import Header from './Header';
 import Item from './Item';
 import Divider from './Divider';
 
+const styledDropdown = css`
+  position: relative;
+  display: inline-block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+`;
+
+const styledToggle = css`
+  display: inline-block;
+`;
+
+const styledList = css`
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  float: left;
+  font-size: 14px;
+  left: 0;
+  list-style: none;
+  margin: 2px 0 0;
+  min-width: 160px;
+  padding: 5px 0;
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  z-index: 1000;
+`;
+
+const align = {
+  right: css`
+    right: 0;
+    left: auto;
+  `,
+};
+
 class Gear extends Component {
   static Header = Header;
   static Item = Item;
   static Divider = Divider;
-  
+
   constructor(props) {
     super(props);
 
     this.state = {
-      listOpen: false
-    }
+      listOpen: false,
+    };
   }
 
   toggle = () => {
     this.setState(prevState => ({
-      listOpen: !prevState.listOpen
-    }))
-  }
-  
+      listOpen: !prevState.listOpen,
+    }));
+  };
+
   render() {
     const { children, right } = this.props;
     const { listOpen } = this.state;
+    const alignClass = right ? 'right' : '';
 
     return (
-      <StyledDropdown eventTypes='click'>
-        <StyledToggle onClick={() => this.toggle()}>
+      <div className={styledDropdown} eventTypes="click">
+        <div className={styledToggle} onClick={() => this.toggle()}>
           <Icon />
-        </StyledToggle>
-        {listOpen && 
-          <StyledList right={right}>
-            {children}
-          </StyledList>}
-      </StyledDropdown>
+        </div>
+        {listOpen && <ul className={`${styledList} ${align[alignClass]}`}>{children}</ul>}
+      </div>
     );
   }
 }
 
-const StyledDropdown = glamorous.div({
-  position: 'relative',
-  display: 'inline-block',
-  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-});
-
-const StyledToggle = glamorous.div({
-  display: 'inline-block'
-})
-
-const StyledList = glamorous.ul({
-  position: 'absolute',
-  top: '100%',
-  left: '0',
-  zIndex: '1000',
-  float: 'left',
-  minWidth: '160px',
-  padding: '5px 0',
-  margin: '2px 0 0',
-  listStyle: 'none',
-  fontSize: '14px',
-  textAlign: 'left',
-  backgroundColor: '#fff',
-  border: '1px solid rgba(0, 0, 0, .15)',
-  borderRadius: '4px',
-  boxShadow: '0 6px 12px rgba(0,0,0,.175)',
-  backgroundClip: 'padding-box',
-}, (props) => {
-  if (props.right) {
-    return {
-      right: 0,
-      left: 'auto',
-    }
-  }
-});
-
 Gear.propTypes = {
   children: PropTypes.node.isRequired,
-  right: PropTypes.bool
+  right: PropTypes.bool,
 };
 
 export default Gear;

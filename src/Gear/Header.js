@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import glamorous from 'glamorous';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
-const Header = (props) => (
-  <StyledHeader>{props.children}</StyledHeader>
+const styles = css`
+  color: #777;
+  display: block;
+  font-size: 14px;
+  line-height: 1.42;
+  padding: 3px 20px;
+  white-space: nowrap;
+`;
+
+const Header = props => (
+  <li className={styles}>
+    {props.children}
+  </li>
 );
-
-const StyledHeader = glamorous.li({
-  display: 'block',
-  padding: '3px 20px',
-  fontSize: '14px',
-  lineHeight: '1.42',
-  color: '#777',
-  whiteSpace: 'nowrap'
-})
-
 
 
 Header.propTypes = {

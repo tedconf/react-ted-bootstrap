@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
 import Caret from '../utils/Caret';
 
@@ -54,18 +54,27 @@ export default class Dropdown extends Component {
 
   render() {
     const { selected, expanded } = this.state;
+    const expandedClass = expanded ? expandedStyle : '';
     const label = selected ? selected : this.props.options[0].label;
     const options = this.props.options.map(opt => (
-      <DropdownItem key={`${opt.label}${opt.index}`} onClick={e => this.onClick(e, opt.label)}>{opt.label}</DropdownItem>
+      <li
+        className={dropdownItem}
+        key={`${opt.label}${opt.index}`}
+        onClick={e => this.onClick(e, opt.label)}
+      >
+        {opt.label}
+      </li>
     ));
 
     return (
       <div style={{ position: 'relative' }} ref={this.setWrapperRef}>
-        <Label onClick={() => this.toggleExpanded()}>
+        <div className={styledLabel} onClick={() => this.toggleExpanded()}>
           <span style={{ marginRight: '6px' }}>{label}</span>
           <Caret />
-        </Label>
-        <DropdownList expanded={expanded}>{options}</DropdownList>
+        </div>
+        <ul className={`${dropdownList} ${expandedClass}`} aria-expanded={expanded}>
+          {options}
+        </ul>
       </div>
     );
   }
@@ -75,59 +84,57 @@ Dropdown.propTypes = {
   onClick: PropTypes.func,
 };
 
-const Label = glamorous.span({
-  alignItems: 'center',
-  color: '#444',
-  cursor: 'pointer',
-  display: 'flex',
-  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: '14px',
-  fontWeight: 700,
-  lineHeight: 1,
-  margin: '10px 0',
-});
+const styledLabel = css`
+  align-items: center;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 10px 0;
+`;
 
-const DropdownList = glamorous.ul(
-  {
-    backgroundClip: 'padding-box',
-    backgroundColor: '#fff',
-    border: '1px solid rgba(0, 0, 0, 0.15)',
-    borderRadius: '4px',
-    boxShadow: '0 6px 12px rgba(0, 0, 0, 0.175)',
-    display: 'none',
-    float: 'left',
-    fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-    fontSize: '14px',
-    left: 0,
-    listStyle: 'none',
-    margin: '2px 0 0',
-    minWidth: '160px',
-    padding: '5px 0',
-    position: 'absolute',
-    textAlign: 'left',
-    top: '100%',
-    zIndex: 1000,
-  },
-  props => {
-    if (props.expanded) {
-      return {
-        display: 'block',
-      };
-    }
-  },
-);
+const dropdownList = css`
+  background-clip: padding-box;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  display: none;
+  float: left;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  left: 0;
+  list-style: none;
+  margin: 2px 0 0;
+  min-width: 160px;
+  padding: 5px 0;
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  z-index: 1000;
+`;
 
-const DropdownItem = glamorous.li({
-  clear: 'both',
-  color: '#333333',
-  cursor: 'pointer',
-  display: 'block',
-  fontWeight: 'normal',
-  lineHeight: 1.42857,
-  padding: '3px 20px',
-  whiteSpace: 'nowrap',
-  ['&:hover']: {
-    color: '#262626',
-    backgroundColor: '#f5f5f5',
-  },
-});
+const expandedStyle = css`
+  display: block !important;
+`;
+
+const dropdownItem = css`
+  clear: both;
+  color: #333333;
+  cursor: pointer;
+  display: block;
+  font-weight: normal;
+  line-height: 1.42857;
+  padding: 3px 20px;
+  white-space: nowrap;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #262626;
+    background-color: #f5f5f5;
+  }
+`;

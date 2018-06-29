@@ -1,6 +1,52 @@
 import React from 'react';
-import glamorous from 'glamorous';
+import { css } from 'emotion';
 import PropTypes from 'prop-types';
+
+const button = css`
+  background-color: #ededed;
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.075));
+  border-color: transparent;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05ex;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 9px 12px;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+`;
+
+const theme = {
+  primary: css`
+    background-color: #4e4e4e;
+  `,
+  success: css`
+    background-color: #61b563;
+  `,
+  info: css`
+    background-color: #71c1d9;
+  `,
+  warning: css`
+    background-color: #eaa04a;
+  `,
+  danger: css`
+    background-color: #e12e28;
+  `,
+  base: css`
+    border-color: #d7d7d7;
+    color: #444;
+    font-weight: 700;
+    text-shadow: 0 1px 0 white;
+  `,
+};
 
 const Button = (props) => {
   const {
@@ -8,71 +54,22 @@ const Button = (props) => {
     onClick,
     onFocus,
     onBlur,
+    children,
   } = props;
+  const typeClass = type || 'base';
 
   return (
-    <StyledButton
-      type={type}
+    <button
+      className={`${button} ${theme[typeClass]}`}
+      type="button"
       onClick={onClick}
       onBlur={onBlur}
       onFocus={onFocus}
     >
-      {props.children}
-    </StyledButton>
+      {children}
+    </button>
   );
 };
-
-const StyledButton = glamorous.button({
-  backgroundColor: '#ededed',
-  backgroundImage: 'linear-gradient(transparent, rgba(0,0,0,0.075))',
-  borderColor: 'transparent',
-  borderRadius: '4px',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  color: 'white',
-  cursor: 'pointer',
-  display: 'inline-block',
-  fontSize: '14px',
-  fontWeight: 500,
-  letterSpacing: '0.05ex',
-  lineHeight: 1.42857,
-  marginBottom: 0,
-  padding: '9px 12px',
-  textAlign: 'center',
-  userSelect: 'none',
-  verticalAlign: 'middle',
-  whiteSpace: 'nowrap',
-}, (props) => {
-  switch (props.type) {
-    case 'primary':
-      return {
-        backgroundColor: '#4e4e4e',
-      };
-    case 'success':
-      return {
-        backgroundColor: '#61b563',
-      };
-    case 'info':
-      return {
-        backgroundColor: '#71c1d9',
-      };
-    case 'warning':
-      return {
-        backgroundColor: '#eaa04a',
-      };
-    case 'danger':
-      return {
-        backgroundColor: '#e12e28',
-      };
-    default:
-      return {
-        borderColor: '#d7d7d7',
-        color: '#444',
-        fontWeight: 700,
-        textShadow: '0 1px 0 white',
-      };
-  }
-});
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,

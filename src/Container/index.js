@@ -1,23 +1,41 @@
 import React from 'react';
-import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
 import mediaQueries from '../utils/media-queries';
 
-const Container = props => <StyledContainer>{props.children}</StyledContainer>;
+const styledContainer = css`
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
 
-const StyledContainer = glamorous.div({
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  paddingLeft: '15px',
-  paddingRight: '15px',
-  width: '100%',
+  @media (min-width: ${mediaQueries.small}) {
+    max-width: 540px;
+  }
 
-  [mediaQueries.small]: { maxWidth: '540px' },
-  [mediaQueries.medium]: { maxWidth: '720px' },
-  [mediaQueries.large]: { maxWidth: '960px' },
-  [mediaQueries.xLarge]: { maxWidth: '1140px' },
-});
+  @media (min-width: ${mediaQueries.medium}) {
+    max-width: 720px;
+  }
+
+  @media (min-width: ${mediaQueries.large}) {
+    max-width: 960px;
+  }
+
+  @media (min-width: ${mediaQueries.xLarge}) {
+    max-width: 1140px;
+  }
+`;
+
+const Container = (props) => {
+  const { children } = props;
+  return (
+    <div className={styledContainer}>
+      {children}
+    </div>
+  );
+};
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,

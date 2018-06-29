@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import glamorous from 'glamorous';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
 
-const Item = (props) => (
-  <StyledItem>{props.children}</StyledItem>
-);
+const styles = css`
+  & > a {
+    clear: both;
+    color: #333;
+    display: block;
+    font-weight: 400;
+    line-height: 1.42;
+    padding: 3px 20px;
+    text-decoration: none;
+    white-space: nowrap;
 
-const StyledItem = glamorous.li({
-  ["& > a"]: {
-    display: 'block',
-    padding: '3px 20px',
-    clear: 'both',
-    fontWeight: '400',
-    lineHeight: '1.42',
-    color: '#333',
-    whiteSpace: 'nowrap',
-    textDecoration: 'none',
-
-    ["&:hover"]: {
-      color: '#262626',
-      backgroundColor: '#f5f5f5'
+    &:hover {
+      background-color: #f5f5f5;
+      color: #262626;
     }
   }
-})
+`;
+
+const Item = props => (
+  <li className={styles}>
+    {props.children}
+  </li>
+);
 
 Item.propTypes = {
   children: PropTypes.node.isRequired,
