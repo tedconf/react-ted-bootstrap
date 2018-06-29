@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import glamorous from 'glamorous';
+import React from 'react';
+import { css } from 'emotion';
 
-const Divider = (props) => (
-  <StyledDivider />
+const styles = css`
+  background-color: #e5e5e5;
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+`;
+
+const Divider = () => (
+  <li className={styles} />
 );
-
-const StyledDivider = glamorous.li({
-  height: '1px',
-  margin: '9px 0',
-  overflow: 'hidden',
-  backgroundColor: '#e5e5e5'
-})
 
 export default Divider;
