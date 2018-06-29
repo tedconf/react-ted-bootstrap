@@ -15,7 +15,6 @@
   },
   "author": "Jon Bellah <jon@ted.com>",
   "license": "MIT",
-  "private": true,
   "peerDependencies": {
     "emotion": ">= 9.2.4",
     "react": ">= 16.0.0",
