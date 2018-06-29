@@ -1,8 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
+import { css } from 'emotion';
 
 import Caret from '../utils/Caret';
+
+const container = css`
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  width: 100%;
+`;
+
+const button = css`
+  align-items: center;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  outline: none;
+  padding: 0;
+  text-decoration: 'none;
+`;
+
+const label = css`
+  margin-left: 4px;
+`;
 
 export default class TwistDown extends Component {
   constructor(props) {
@@ -31,43 +58,16 @@ export default class TwistDown extends Component {
     const rotate = this.state.open ? 'none' : 'rotate(-90deg)';
 
     return (
-      <TwistContainer>
-        <TwistButton onClick={this.toggleOpen}>
+      <div className={container}>
+        <button className={button} type="button" onClick={this.toggleOpen}>
           <Caret rotate={rotate} />
-          <Label>{this.props.label}</Label>
-        </TwistButton>
+          <span className={label}>{this.props.label}</span>
+        </button>
         {this.renderContents()}
-      </TwistContainer>
+      </div>
     );
   }
 }
-
-const TwistContainer = glamorous.div({
-  display: 'block',
-  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: '14px',
-  width: '100%',
-});
-
-const TwistButton = glamorous.button({
-  alignItems: 'center',
-  appearance: 'none',
-  border: 0,
-  borderRadius: 0,
-  color: '#111',
-  cursor: 'pointer',
-  display: 'flex',
-  fontSize: '14px',
-  fontWeight: 500,
-  marginBottom: '12px',
-  outline: 'none',
-  padding: 0,
-  textDecoration: 'none',
-});
-
-const Label = glamorous.span({
-  marginLeft: '4px',
-});
 
 TwistDown.propTypes = {
   label: PropTypes.string.isRequired,
