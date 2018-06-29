@@ -1,5 +1,5 @@
 {
-  "name": "react-ted-bootstrap",
+  "name": "@tedconf/react-ted-bootstrap",
   "version": "0.2.0",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
@@ -15,6 +15,7 @@
   },
   "author": "Jon Bellah <jon@ted.com>",
   "license": "MIT",
+  "private": true,
   "peerDependencies": {
     "emotion": ">= 9.2.4",
     "react": ">= 16.0.0",
