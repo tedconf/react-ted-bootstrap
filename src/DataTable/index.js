@@ -1,6 +1,69 @@
 import React, { Component } from 'react';
-import glamorous from 'glamorous';
 import PropTypes from 'prop-types';
+import { css } from 'emotion';
+
+const styledTable = css`
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  margin-bottom: 20px;
+  max-width: 100%;
+  width: 100%;
+`;
+
+const styledThead = css`
+  border-bottom: 1px solid #808080;
+  border-color: inherit;
+  border-top: 2px solid #808080;
+  display: table-header-group;
+  vertical-align: middle;
+`;
+
+const styledRow = {
+  base: css`
+    background-color: transparent;
+  `,
+  active: css`
+    background-color: whitesmoke;
+  `,
+  success: css`
+    background-color: #e0efd5;
+  `,
+  info: css`
+    background-color: #deeef5;
+  `,
+  warning: css`
+    background-color: #fcf7e7;
+  `,
+  danger: css`
+    background-color: #f2d2cf;
+  `,
+};
+
+const styledTh = css`
+  font-weight: 700;
+  padding: 15px 10px;
+  text-align: left;
+`;
+
+const sortable = css`
+  cursor: pointer;
+`;
+
+const styledTd = css`
+  border-top: 1px solid #e3e3e3;
+  line-height: 1.42857;
+  padding: 15px 10px;
+  vertical-align: top;
+`;
+
+const flexDiv = css`
+  display: flex;
+  align-items: center;
+`;
+
 
 export default class DataTable extends Component {
   constructor() {
@@ -36,20 +99,21 @@ export default class DataTable extends Component {
     return (
       <tr>
         {headings.map((h, index) => {
-          const isSortable = (h.sortable !== undefined) && h.sortable;
+          const isSortable = h.sortable !== undefined && h.sortable;
+          const sortableClass = isSortable ? sortable : '';
 
           return (
-            <StyledTh
+            <th
               key={index}
+              className={`${styledTh} ${sortableClass}`}
               onClick={() => this.onSort(index, isSortable)}
-              isSortable={isSortable}
             >
-              <FlexDiv>
+              <div className={flexDiv}>
                 {h.label}
                 {this.renderCaret(index)}
-              </FlexDiv>
-            </StyledTh>
-         );
+              </div>
+            </th>
+          );
         })}
       </tr>
     );
@@ -57,9 +121,16 @@ export default class DataTable extends Component {
 
   buildRows(rows) {
     return rows.map((row, index) => (
-      <StyledRow key={index} className={row.className ? row.className : ''}>
-        {row.data.map((cell, cellindex) => <StyledTd key={cellindex}>{cell}</StyledTd>)}
-      </StyledRow>
+      <tr
+        key={index}
+        className={`${styledRow[row.className ? row.className : 'base']}`}
+      >
+        {row.data.map((cell, cellindex) => (
+          <td className={styledTd} key={cellindex}>
+            {cell}
+          </td>
+        ))}
+      </tr>
     ));
   }
 
@@ -69,102 +140,32 @@ export default class DataTable extends Component {
     const rotate = this.state.sortDirection === 'desc' ? 'rotateX(180deg)' : '';
 
     return (
-      <svg width="10" height="6" xmlns="http://www.w3.org/2000/svg" style={{ transform: rotate, marginLeft: '4px' }}>
-        <path d="M9.814.198A.583.583 0 0 0 9.374 0H.626a.583.583 0 0 0-.44.198A.663.663 0 0 0 0 .667c0 .18.062.336.186.468L4.56 5.802a.583.583 0 0 0 .88 0l4.374-4.667A.663.663 0 0 0 10 .667a.663.663 0 0 0-.186-.47z" fill="#000" fillRule="nonzero"/>
+      <svg
+        width="10"
+        height="6"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ transform: rotate, marginLeft: '4px' }}
+      >
+        <path
+          d="M9.814.198A.583.583 0 0 0 9.374 0H.626a.583.583 0 0 0-.44.198A.663.663 0 0 0 0 .667c0 .18.062.336.186.468L4.56 5.802a.583.583 0 0 0 .88 0l4.374-4.667A.663.663 0 0 0 10 .667a.663.663 0 0 0-.186-.47z"
+          fill="#000"
+          fillRule="nonzero"
+        />
       </svg>
     );
   }
 
   render() {
-    const {
-      headings,
-      rows,
-    } = this.props;
+    const { headings, rows } = this.props;
 
     return (
-      <StyledTable>
-        <StyledThead>
-          {this.buildHeadings(headings)}
-        </StyledThead>
-        <tbody>
-          {this.buildRows(rows)}
-        </tbody>
-      </StyledTable>
+      <table className={styledTable}>
+        <thead className={styledThead}>{this.buildHeadings(headings)}</thead>
+        <tbody>{this.buildRows(rows)}</tbody>
+      </table>
     );
   }
 }
-
-const StyledTable = glamorous.table({
-  backgroundColor: 'transparent',
-  borderCollapse: 'collapse',
-  borderSpacing: 0,
-  fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-  fontSize: '14px',
-  marginBottom: '20px',
-  maxWidth: '100%',
-  width: '100%',
-});
-
-const StyledThead = glamorous.thead({
-  borderBottom: '1px solid #808080',
-  borderColor: 'inherit',
-  borderTop: '2px solid #808080',
-  display: 'table-header-group',
-  verticalAlign: 'middle',
-});
-
-const StyledRow = glamorous.tr({
-  backgroundColor: 'transparent',
-}, (props) => {
-  switch (props.className) {
-    case 'active':
-      return {
-        backgroundColor: 'whitesmoke',
-      };
-    case 'success':
-      return {
-        backgroundColor: '#e0efd5',
-      };
-    case 'info':
-      return {
-        backgroundColor: '#deeef5',
-      };
-    case 'warning':
-      return {
-        backgroundColor: '#fcf7e7',
-      };
-    case 'danger':
-      return {
-        backgroundColor: '#f2d2cf',
-      };
-    default:
-      break;
-  }
-});
-
-const StyledTh = glamorous.th({
-  fontWeight: '700',
-  padding: '15px 10px',
-  textAlign: 'left',
-}, (props) => {
-  if (props.isSortable) {
-    return {
-      cursor: 'pointer',
-    };
-  }
-});
-
-const StyledTd = glamorous.td({
-  borderTop: '1px solid #e3e3e3',
-  lineHeight: 1.42857,
-  padding: '15px 10px',
-  verticalAlign: 'top',
-});
-
-const FlexDiv = glamorous.div({
-  display: 'flex',
-  alignItems: 'center',
-});
 
 DataTable.propTypes = {
   /** An object containing two keys: label (string) and sortable (bool) */
