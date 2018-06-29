@@ -1,6 +1,6 @@
 {
   "name": "react-ted-bootstrap",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "scripts": {
@@ -16,8 +16,7 @@
   "author": "Jon Bellah <jon@ted.com>",
   "license": "MIT",
   "peerDependencies": {
-    "glamor": "^2.20.40",
-    "glamorous": "^4.12.5",
+    "emotion": ">= 9.2.4",
     "react": ">= 16.0.0",
     "react-dom": ">= 16.0.0"
   },
@@ -33,6 +32,7 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
+    "emotion": "^9.2.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.0.1",
@@ -55,8 +55,5 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
     }
-  },
-  "dependencies": {
-    "emotion": "^9.2.4"
   }
 }
