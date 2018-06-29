@@ -64,7 +64,6 @@ const flexDiv = css`
   align-items: center;
 `;
 
-
 export default class DataTable extends Component {
   constructor() {
     super();

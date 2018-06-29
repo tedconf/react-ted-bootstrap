@@ -21,7 +21,7 @@ const button = css`
   text-align: center;
   user-select: none;
   vertical-align: middle;
-  whitespace: nowrap;
+  white-space: nowrap;
 `;
 
 const theme = {
