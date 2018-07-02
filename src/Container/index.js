@@ -11,20 +11,20 @@ const styledContainer = css`
   padding-right: 15px;
   width: 100%;
 
-  @media (min-width: ${mediaQueries.small}) {
+  ${mediaQueries.small} {
     max-width: 540px;
   }
 
-  @media (min-width: ${mediaQueries.medium}) {
+  ${mediaQueries.medium} {
     max-width: 720px;
   }
 
-  @media (min-width: ${mediaQueries.large}) {
+  ${mediaQueries.large} {
     max-width: 960px;
   }
 
-  @media (min-width: ${mediaQueries.xLarge}) {
-    max-width: 1140px;
+  ${mediaQueries.xLarge} {
+    max-width: 1170px;
   }
 `;
 
