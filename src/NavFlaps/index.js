@@ -9,6 +9,7 @@ const navRow = css`
   font-weight: bold;
   list-style: none;
   padding: 0;
+  margin-bottom: 25px;
   width: 100%;
 `;
 

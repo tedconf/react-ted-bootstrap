@@ -1,6 +1,6 @@
 {
   "name": "@tedprivate/react-ted-bootstrap",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "deploy-storybook": "storybook-to-ghpages",
     "test": "jest",
     "build": "webpack --config ./webpack.config.js --mode production",
-    "publish": "yarn build && npm publish"
+    "pub": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",

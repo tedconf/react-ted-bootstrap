@@ -14,6 +14,7 @@ const styledDropdown = css`
 `;
 
 const styledToggle = css`
+  cursor: pointer;
   display: inline-block;
 `;
 
