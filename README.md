@@ -5,7 +5,7 @@ React version of [TED Bootstrap](http://tedlive.ted.com/swatch)
 ## Installation
 
 ```bash
-yarn add git+ssh://git@github.com/tedconf/react-ted-bootstrap.git#master
+yarn add @tedprivate/react-ted-bootstrap
 ```
 
 ## Components List
