@@ -41,7 +41,7 @@ const Item = props => (
 );
 
 Item.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Item;
