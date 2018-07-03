@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import * as styles from './styles';
+import { Provider } from './context';
 
 import Divider from './Divider';
 import Header from './Header';
@@ -19,11 +20,13 @@ export default class Select extends Component {
 
     this.state = {
       listOpen: false,
+      onChange: (value) => this.onChange(value),
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +35,11 @@ export default class Select extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClickOutside);
+  }
+
+  onChange(value) {
+    this.setState({ listOpen: false });
+    this.props.onChange(value);
   }
 
   setWrapperRef(node) {
@@ -53,30 +61,32 @@ export default class Select extends Component {
   }
 
   render() {
-    const { label, onChange, children } = this.props;
+    const { label, children } = this.props;
     const { listOpen } = this.state;
 
     return (
-      <div style={{ position: 'relative' }} ref={this.setWrapperRef}>
-        <button
-          type="button"
-          className={styles.styledSelect}
-          onClick={this.toggleOpen}
-        >
-          Open
-          <span className={styles.styledCaret}>
-            <svg width="14" height="9" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M7 8a.828.828 0 0 1-.594-.252l-5.16-5.28a.874.874 0 0 1 0-1.216.827.827 0 0 1 1.189 0L7 5.924l4.565-4.672a.827.827 0 0 1 1.189 0 .874.874 0 0 1 0 1.216l-5.16 5.28A.828.828 0 0 1 7 8z"
-                fill="#787878"
-                fillRule="nonzero"
-                stroke="#787878"
-              />
-            </svg>
-          </span>
-        </button>
-        {listOpen && <ul className={styles.styledList}>{children}</ul>}
-      </div>
+      <Provider value={this.state}>
+        <div className={styles.container} ref={this.setWrapperRef}>
+          <button
+            type="button"
+            className={styles.styledSelect}
+            onClick={this.toggleOpen}
+          >
+            Open
+            <span className={styles.styledCaret}>
+              <svg width="14" height="9" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M7 8a.828.828 0 0 1-.594-.252l-5.16-5.28a.874.874 0 0 1 0-1.216.827.827 0 0 1 1.189 0L7 5.924l4.565-4.672a.827.827 0 0 1 1.189 0 .874.874 0 0 1 0 1.216l-5.16 5.28A.828.828 0 0 1 7 8z"
+                  fill="#787878"
+                  fillRule="nonzero"
+                  stroke="#787878"
+                />
+              </svg>
+            </span>
+          </button>
+          {listOpen && <ul className={styles.styledList}>{children}</ul>}
+        </div>
+      </Provider>
     );
   }
 }

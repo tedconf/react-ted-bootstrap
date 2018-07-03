@@ -1,5 +1,10 @@
 import { css } from 'emotion';
 
+export const container = css`
+  display: inline-block;
+  position: relative;
+`;
+
 export const styledList = css`
   background-clip: padding-box;
   background-color: #fff;
@@ -16,7 +21,6 @@ export const styledList = css`
   position: absolute;
   text-align: left;
   top: 100%;
-  z-index: 1000;
 `;
 
 export const styledSelect = css`
@@ -26,19 +30,20 @@ export const styledSelect = css`
   border-radius: 4px;
   box-shadow: none;
   color: #555;
+  cursor: pointer;
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   height: 40px;
   line-height: 1.42857;
   padding: 9px 12px;
-  padding-right: 50px;
+  padding-right: 75px;
+  position: relative;
   text-indent: 1px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  width: 100%;
 
   &:active,
-  &:focus: {
+  &:focus {
     border-color: #66afe9;
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
     outline: 0;
