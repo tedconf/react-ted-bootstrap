@@ -1,6 +1,6 @@
 {
   "name": "@tedprivate/react-ted-bootstrap",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "scripts": {
@@ -22,10 +22,10 @@
     "react-dom": ">= 16.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-info": "^4.0.0",
-    "@storybook/addon-options": "^4.0.0",
-    "@storybook/addon-storyshots": "^4.0.0",
-    "@storybook/react": "^4.0.0",
+    "@storybook/addon-info": "^4.0.0-alpha.11",
+    "@storybook/addon-options": "^4.0.0-alpha.11",
+    "@storybook/addon-storyshots": "^4.0.0-alpha.11",
+    "@storybook/react": "^4.0.0-alpha.11",
     "@storybook/storybook-deployer": "^2.3.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
