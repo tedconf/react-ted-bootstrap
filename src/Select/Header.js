@@ -9,6 +9,7 @@ const styles = css`
   line-height: 1.42;
   padding: 3px 20px;
   white-space: nowrap;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 `;
 
 const Header = props => (

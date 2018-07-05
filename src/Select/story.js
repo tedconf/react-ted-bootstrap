@@ -22,4 +22,16 @@ storiesOf('Select', module)
         <Select.Item value="testing3">Testing 3</Select.Item>
       </Select>
     )),
+  )
+  .add(
+    'Headers and dividers',
+    withInfo()(() => (
+      <Select label="Select with headers">
+        <Select.Header>Header</Select.Header>
+        <Select.Item>TED.com</Select.Item>
+        <Select.Divider />
+        <Select.Header>Different Header</Select.Header>
+        <Select.Item>TED.com</Select.Item>
+      </Select>
+    )),
   );
