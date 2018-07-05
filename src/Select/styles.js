@@ -16,7 +16,9 @@ export const styledList = css`
   left: 0;
   list-style: none;
   margin: 2px 0 0;
+  max-height: 500px;
   min-width: 160px;
+  overflow-y: auto;
   padding: 5px 0;
   position: absolute;
   text-align: left;

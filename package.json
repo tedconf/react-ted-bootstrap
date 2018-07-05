@@ -1,6 +1,6 @@
 {
   "name": "@tedprivate/react-ted-bootstrap",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "scripts": {
