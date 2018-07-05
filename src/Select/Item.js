@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from 'emotion';
 
 import { Consumer } from './context';
+import Check from '../utils/Check';
 
 const styles = css`
   clear: both;
@@ -12,6 +13,13 @@ const styles = css`
   line-height: 1.42;
   padding: 3px 20px;
   white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  svg {
+    transform: scale(1.25);
+  }
 
   &:hover {
     background-color: #f5f5f5;
@@ -25,23 +33,30 @@ const styles = css`
   }
 `;
 
-const Item = props => (
-  <Consumer>
-    {({ onChange }) => (
-      <li
-        className={styles}
-        onClick={() => onChange(props.children)}
-        onKeyPress={() => onChange(props.children)}
-        role="presentation"
-      >
-        {props.children}
-      </li>
-    )}
-  </Consumer>
-);
+const Item = (props) => {
+  const returnValue = props.value || props.children;
+
+  return (
+    <Consumer>
+      {({ onChange }) => (
+        <li
+          className={styles}
+          onClick={() => onChange(returnValue)}
+          onKeyPress={() => onChange(returnValue)}
+          role="presentation"
+        >
+          {props.children}
+          {props.checked ? <Check /> : false}
+        </li>
+      )}
+    </Consumer>
+  );
+};
 
 Item.propTypes = {
   children: PropTypes.node.isRequired,
+  value: PropTypes.string,
+  checked: PropTypes.bool,
 };
 
 export default Item;

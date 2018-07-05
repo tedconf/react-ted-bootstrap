@@ -8,6 +8,7 @@ import Divider from './Divider';
 import Header from './Header';
 import Item from './Item';
 
+/* eslint-disable react/no-unused-state */
 export default class Select extends Component {
   static Header = Header;
 
@@ -39,7 +40,7 @@ export default class Select extends Component {
   }
 
   onChange(value) {
-    this.setState({ listOpen: false, current: value });
+    this.setState({ listOpen: this.props.multi, current: value });
     this.props.onChange(value);
   }
 
@@ -53,9 +54,9 @@ export default class Select extends Component {
 
   handleClickOutside(event) {
     if (
-      this.wrapperRef &&
-      !this.wrapperRef.contains(event.target) &&
-      this.state.listOpen
+      this.wrapperRef
+      && !this.wrapperRef.contains(event.target)
+      && this.state.listOpen
     ) {
       this.toggleOpen();
     }
