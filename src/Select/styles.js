@@ -29,22 +29,27 @@ export const styledSelect = css`
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: none;
-  color: #555;
+  color: #666;
   cursor: pointer;
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   height: 40px;
-  line-height: 1.42857;
+  line-height: 22px;
   padding: 9px 12px;
   padding-right: 75px;
   position: relative;
   text-indent: 1px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 
+  &:hover {
+    color: #444;
+  }
+
   &:active,
   &:focus {
     border-color: #66afe9;
+    color: #444;
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
     outline: 0;
   }
