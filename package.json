@@ -1,6 +1,6 @@
 {
   "name": "@tedprivate/react-ted-bootstrap",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "deploy-storybook": "storybook-to-ghpages",
     "test": "jest",
     "build": "webpack --config ./webpack.config.js --mode production",
-    "publish": "yarn build && npm publish"
+    "pub": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "emotion": "^9.2.4",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "npm:enzyme-react-adapter-future",
     "eslint": "^5.0.1",
     "eslint-config-airbnb": "17.0.0",
     "eslint-plugin-import": "^2.8.0",
