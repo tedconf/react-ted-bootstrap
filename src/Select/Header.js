@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { css } from 'emotion';
 
 const styles = css`
-  color: #777;
+  color: #999;
   display: block;
-  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
   line-height: 1.42;
   padding: 3px 20px;
   white-space: nowrap;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 `;
 
 const Header = props => (

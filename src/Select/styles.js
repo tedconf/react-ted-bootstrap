@@ -8,8 +8,8 @@ export const container = css`
 export const styledList = css`
   background-clip: padding-box;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, .15);
   border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, .15);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
   float: left;
   font-size: 14px;
@@ -21,6 +21,7 @@ export const styledList = css`
   position: absolute;
   text-align: left;
   top: 100%;
+  z-index: 1000;
 `;
 
 export const styledSelect = css`
