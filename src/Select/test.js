@@ -7,26 +7,25 @@ import Select from './index';
 configure({ adapter: new Adapter() });
 
 describe('Select', () => {
-  const options = [
-    {
-      label: 'Today',
-      value: 'today',
-    },
-    {
-      label: 'Yesterday',
-      value: 'yesterday',
-    },
-  ];
-
   it('should render without throwing an error', () => {
-    expect(shallow(<Select label="test" options={options} />).exists(<select />)).toBe(true);
+    expect(shallow(
+      <Select label="Test">
+        <Select.Item>Testing</Select.Item>
+      </Select>,
+    ).exists(<button>Test</button>)).toBe(true);
   });
 
   it('should register onChange function passed as props', () => {
     const change = jest.fn();
-    const wrapper = mount(<Select label="test" options={options} onChange={change} />);
+    const wrapper = mount(
+      <Select label="Test" onChange={change}>
+        <Select.Item>Testing</Select.Item>
+      </Select>
+    );
 
-    wrapper.find('select').simulate('change');
+
+    wrapper.find('button').simulate('click');
+    wrapper.find('li').simulate('click');
     expect(change).toHaveBeenCalled();
   });
 });

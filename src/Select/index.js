@@ -99,9 +99,5 @@ Select.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   multi: PropTypes.bool,
-  children: PropTypes.oneOf([
-    PropTypes.element,
-    PropTypes.node,
-    PropTypes.string,
-  ]),
+
 };

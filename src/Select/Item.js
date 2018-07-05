@@ -54,7 +54,7 @@ const Item = (props) => {
 };
 
 Item.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   value: PropTypes.string,
   checked: PropTypes.bool,
 };
