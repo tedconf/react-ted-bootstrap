@@ -40,7 +40,7 @@ export const styledSelect = css`
   height: 40px;
   line-height: 22px;
   padding: 9px 12px;
-  padding-right: 75px;
+  padding-right: 63px;
   position: relative;
   text-indent: 1px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
