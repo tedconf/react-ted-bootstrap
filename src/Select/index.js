@@ -21,7 +21,6 @@ export default class Select extends Component {
 
     this.state = {
       listOpen: false,
-      current: false,
       onChange: value => this.onChange(value),
     };
 
@@ -40,7 +39,7 @@ export default class Select extends Component {
   }
 
   onChange(value) {
-    this.setState({ listOpen: this.props.multi, current: value });
+    this.setState({ listOpen: this.props.multi });
     this.props.onChange(value);
   }
 
@@ -63,10 +62,8 @@ export default class Select extends Component {
   }
 
   render() {
-    const { label, multi, children } = this.props;
-    const { listOpen, current } = this.state;
-
-    const selected = multi ? label : current || label;
+    const { label, children } = this.props;
+    const { listOpen } = this.state;
 
     return (
       <Provider value={this.state}>
@@ -76,7 +73,7 @@ export default class Select extends Component {
             className={styles.styledSelect}
             onClick={this.toggleOpen}
           >
-            {selected}
+            {label}
             <span className={styles.styledCaret}>
               <svg width="14" height="9" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -99,5 +96,4 @@ Select.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   multi: PropTypes.bool,
-
 };
