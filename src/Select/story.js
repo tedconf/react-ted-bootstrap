@@ -17,7 +17,7 @@ storiesOf('Select', module)
     'Multi-select',
     withInfo()(() => (
       <Select multi label="Test" onChange={action('onChange')}>
-        <Select.Item value="testing" checked>Testing</Select.Item>
+        <Select.Item value="testing" checked="false">Testing</Select.Item>
         <Select.Item value="testing2">Testing 2</Select.Item>
         <Select.Item value="testing3">Testing 3</Select.Item>
       </Select>
