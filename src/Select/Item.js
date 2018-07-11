@@ -46,7 +46,7 @@ const Item = (props) => {
           role="presentation"
         >
           {props.children}
-          {props.checked && props.checked !== 'false' ? <Check /> : false}
+          {props.checked && props.checked !== false ? <Check /> : false}
         </li>
       )}
     </Consumer>
