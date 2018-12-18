@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import { css } from 'emotion';
+import React, { Component } from 'react';
 
 const navRow = css`
   border-bottom: 1px solid #ddd;
@@ -41,7 +41,7 @@ export default class NavFlaps extends Component {
 
   render() {
     return (
-      <div>
+      <div data-bootstrap-type="navFlaps">
         <ul className={navRow}>
           {this.props.children.map((elem, index) => {
             const style = index === this.state.selected ? selected : '';

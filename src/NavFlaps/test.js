@@ -16,7 +16,7 @@ describe('Select', () => {
           <Tab label="Test 1" content={<TestComponent />} />
           <Tab label="Test 2" content={<TestComponent />} />
         </NavFlaps>,
-      ).exists('div#testComponent'),
+      ).exists('div[data-bootstrap-type="navFlaps"]'),
     ).toBe(true);
   });
 });
