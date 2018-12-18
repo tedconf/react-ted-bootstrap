@@ -18,8 +18,8 @@
   "license": "MIT",
   "peerDependencies": {
     "emotion": ">= 10.0.5",
-    "react": ">= 16.0.0",
-    "react-dom": ">= 16.0.0"
+    "react": ">= 16.3.3",
+    "react-dom": ">= 16.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -45,9 +45,9 @@
     "eslint-plugin-react": "^7.4.0",
     "jest": "^23.1.0",
     "prop-types": "^15.6.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0",
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-test-renderer": "16.3.2",
     "storybook-addon-a11y": "^3.1.9",
     "webpack": "^4.0.1",
     "webpack-cli": "^3.0.4"
