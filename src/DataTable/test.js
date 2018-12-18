@@ -1,10 +1,10 @@
+import { configure, mount, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16.3';
 import React from 'react';
-import { mount, shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
 import DataTable from './index';
-
 import { headings, rows, sortable } from './sampleData';
+
+
 
 configure({ adapter: new Adapter() });
 

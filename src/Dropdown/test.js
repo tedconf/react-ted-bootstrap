@@ -1,8 +1,8 @@
+import { configure, mount, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16.3';
 import React from 'react';
-import { mount, shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
 import Dropdown from './index';
+
 
 configure({ adapter: new Adapter() });
 
@@ -20,7 +20,7 @@ const options = [
 
 describe('Dropdown', () => {
   it('should render without throwing an error', () => {
-    expect(shallow(<Dropdown options={options} />).exists(<ul />)).toBe(true);
+    expect(shallow(<Dropdown options={options} />).exists('ul')).toBe(true);
   });
 
   it('should render all options', () => {

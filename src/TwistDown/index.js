@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'emotion';
-
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Caret from '../utils/Caret';
+
 
 const container = css`
   display: block;
@@ -58,7 +58,7 @@ export default class TwistDown extends Component {
     const rotate = this.state.open ? 'none' : 'rotate(-90deg)';
 
     return (
-      <div className={container}>
+      <div className={container} data-bootstrap-type="twistDown">
         <button className={button} type="button" onClick={this.toggleOpen}>
           <Caret rotate={rotate} />
           <span className={label}>{this.props.label}</span>

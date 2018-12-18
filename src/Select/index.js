@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import * as styles from './styles';
+import React, { Component } from 'react';
 import { Provider } from './context';
-
 import Divider from './Divider';
 import Header from './Header';
 import Item from './Item';
+import * as styles from './styles';
+
+
 
 /* eslint-disable react/no-unused-state */
 export default class Select extends Component {
@@ -72,6 +72,7 @@ export default class Select extends Component {
             type="button"
             className={styles.styledSelect}
             onClick={this.toggleOpen}
+            data-bootstrap-type="select"
           >
             {label}
             <span className={styles.styledCaret}>
