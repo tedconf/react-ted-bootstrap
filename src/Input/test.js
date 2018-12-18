@@ -1,20 +1,20 @@
+import { configure, mount, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16.3';
 import React from 'react';
-import { mount, shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
 import Input from './index';
+
 
 configure({ adapter: new Adapter() });
 
 describe('Input', () => {
   it('should render without throwing an error', () => {
-    expect(shallow(<Input />).exists(<input type="text" />)).toBe(true);
+    expect(shallow(<Input />).exists('input[type="text"]')).toBe(true);
   });
 
   it('should render the appropriate input type', () => {
-    expect(shallow(<Input type="text" />).exists(<input type="text" />)).toBe(true);
-    expect(shallow(<Input type="password" />).exists(<input type="password" />)).toBe(true);
-    expect(shallow(<Input type="textarea" />).exists(<textarea />)).toBe(true);
+    expect(shallow(<Input type="text" />).exists('input[type="text"]')).toBe(true);
+    expect(shallow(<Input type="password" />).exists('input[type="password"]')).toBe(true);
+    expect(shallow(<Input type="textarea" />).exists('textarea')).toBe(true);
   });
 
 

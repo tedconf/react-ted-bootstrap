@@ -1,6 +1,6 @@
-import React from 'react';
 import { css } from 'emotion';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const button = css`
   background-color: #ededed;
@@ -65,6 +65,7 @@ const Button = (props) => {
       onClick={onClick}
       onBlur={onBlur}
       onFocus={onFocus}
+      data-bootstrap-type="button"
     >
       {children}
     </button>

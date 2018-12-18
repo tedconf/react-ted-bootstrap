@@ -1,14 +1,17 @@
+import { configure, mount, shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16.3';
 import React from 'react';
-import { mount, shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
 import Button from './index';
 
 configure({ adapter: new Adapter() });
 
 describe('Button', () => {
   it('should render without throwing an error', () => {
-    expect(shallow(<Button>A Button</Button>).exists(<button>A Button</button>)).toBe(true)
+    expect(
+      shallow(<Button>A Button</Button>).exists(
+        'button[data-bootstrap-type="button"]',
+      ),
+    ).toBe(true);
   });
 
   it('should register onClick functions passed as props', () => {
