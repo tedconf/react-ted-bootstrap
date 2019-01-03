@@ -29,7 +29,7 @@ const Alert = ({ type, onClose, children }) => {
   const typeClass = type || 'info';
 
   return (
-    <div className={cx(alertBox, theme[typeClass])}>
+    <div data-testid="alert" className={cx(alertBox, theme[typeClass])}>
       {children}
       {onClose ? (
         <button type="button" onClick={onClose}>
