@@ -1,88 +1,7 @@
-import React, { Component } from 'react';
+import { css, cx } from 'emotion';
 import PropTypes from 'prop-types';
-import { css } from 'emotion';
-
+import React, { Component } from 'react';
 import Caret from '../utils/Caret';
-
-export default class Dropdown extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      expanded: false,
-      selected: false,
-    };
-
-    this.toggleExpanded = this.toggleExpanded.bind(this);
-    this.setWrapperRef = this.setWrapperRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
-  }
-
-  onClick(e, value) {
-    e.preventDefault();
-
-    this.setState({ expanded: false });
-
-    this.props.onClick(value);
-  }
-
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
-
-  handleClickOutside(event) {
-    if (
-      this.wrapperRef &&
-      !this.wrapperRef.contains(event.target) &&
-      this.state.expanded
-    ) {
-      this.toggleExpanded();
-    }
-  }
-
-  toggleExpanded() {
-    this.setState({ expanded: !this.state.expanded });
-  }
-
-  render() {
-    const { selected, expanded } = this.state;
-    const expandedClass = expanded ? expandedStyle : '';
-    const label = selected ? selected : this.props.options[0].label;
-    const options = this.props.options.map(opt => (
-      <li
-        className={dropdownItem}
-        key={`${opt.label}${opt.index}`}
-        onClick={e => this.onClick(e, opt.label)}
-      >
-        {opt.label}
-      </li>
-    ));
-
-    return (
-      <div style={{ position: 'relative' }} ref={this.setWrapperRef}>
-        <div className={styledLabel} onClick={() => this.toggleExpanded()}>
-          <span style={{ marginRight: '6px' }}>{label}</span>
-          <Caret />
-        </div>
-        <ul className={`${dropdownList} ${expandedClass}`} aria-expanded={expanded}>
-          {options}
-        </ul>
-      </div>
-    );
-  }
-}
-
-Dropdown.propTypes = {
-  onClick: PropTypes.func,
-};
 
 const styledLabel = css`
   align-items: center;
@@ -138,3 +57,78 @@ const dropdownItem = css`
     background-color: #f5f5f5;
   }
 `;
+
+export default class Dropdown extends Component {
+  state = {
+    expanded: false,
+    selected: false,
+  };
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
+  }
+
+  onClick = (e, value) => {
+    e.preventDefault();
+
+    this.setState({ expanded: false });
+
+    this.props.onClick(value);
+  };
+
+  setWrapperRef = node => {
+    this.wrapperRef = node;
+  };
+
+  handleClickOutside = event => {
+    if (
+      this.wrapperRef &&
+      !this.wrapperRef.contains(event.target) &&
+      this.state.expanded
+    ) {
+      this.toggleExpanded();
+    }
+  };
+
+  toggleExpanded = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
+
+  render() {
+    const { selected, expanded } = this.state;
+    const expandedClass = expanded ? expandedStyle : '';
+    const label = selected ? selected : this.props.options[0].label;
+    const options = this.props.options.map(opt => (
+      <li
+        className={dropdownItem}
+        key={`${opt.label}${opt.index}`}
+        onClick={e => this.onClick(e, opt.label)}
+      >
+        {opt.label}
+      </li>
+    ));
+
+    return (
+      <div style={{ position: 'relative' }} ref={this.setWrapperRef}>
+        <div className={styledLabel} onClick={() => this.toggleExpanded()}>
+          <span style={{ marginRight: '6px' }}>{label}</span>
+          <Caret />
+        </div>
+        <ul
+          className={cx(dropdownList, expandedClass)}
+          aria-expanded={expanded}
+        >
+          {options}
+        </ul>
+      </div>
+    );
+  }
+}
+
+Dropdown.propTypes = {
+  onClick: PropTypes.func,
+};
