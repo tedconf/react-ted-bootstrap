@@ -3,6 +3,9 @@
   "version": "0.4.0",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
+  "files": [
+    "build"
+  ],
   "scripts": {
     "start": "start-storybook -p 9001 -c .storybook",
     "deploy-storybook": "storybook-to-ghpages",
