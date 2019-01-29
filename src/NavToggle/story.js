@@ -8,5 +8,15 @@ storiesOf('NavToggle', module).add(
   'Default',
   withInfo(`
       Standard nav toggle
-  `)(() => <Navbar title="Bootstrap" rightMenu={<NavToggle />} />),
+  `)(() => (
+    <Navbar
+      title="Bootstrap"
+      rightMenu={
+        <NavToggle label="TED2019">
+          <a href="test">test</a>
+          <a href="test2">test2</a>
+        </NavToggle>
+      }
+    />
+  )),
 );

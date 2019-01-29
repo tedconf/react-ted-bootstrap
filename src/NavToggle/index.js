@@ -95,22 +95,18 @@ export default class NavToggle extends Component {
           <button
             aria-expanded={expanded}
             className={toggleButton}
+            onClick={this.toggle}
             type="button"
           >
-            TED2019
+            {this.props.label}
             <span className={caret} />
           </button>
 
-          <ul className={dropdownMenu} role="menu">
-            <li>
-              <a
-                className="event-switcher__event active"
-                href="/candidate-review/events/16645"
-              >
-                TED2019
-              </a>
-            </li>
-          </ul>
+          {expanded ? (
+            <ul className={dropdownMenu} role="menu">
+              {this.props.children}
+            </ul>
+          ) : null}
         </li>
       </ul>
     );
