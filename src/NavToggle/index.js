@@ -1,4 +1,4 @@
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 import React, { Component } from 'react';
 
 const container = css`
@@ -23,6 +23,7 @@ const toggleButton = css`
   background: transparent;
   border: 0;
   color: #fff;
+  cursor: pointer;
   font-size: 18px;
   outline: none;
   padding: 19px 15px;
@@ -50,7 +51,7 @@ const dropdownMenu = css`
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   display: block;
   float: left;
-  font-size: 14px;
+  font-size: 16px;
   left: auto;
   list-style: none;
   margin: 0;
@@ -72,9 +73,24 @@ const dropdownMenu = css`
     padding: 3px 20px;
     text-decoration: none;
     white-space: nowrap;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #f5f5f5;
+      color: #262626;
+    }
   }
 `;
 
+const dropdownOpen = css`
+  background-color: #333;
+  color: #eee;
+
+  span {
+    transform: rotate(180deg);
+  }
+`;
 export default class NavToggle extends Component {
   state = {
     expanded: false,
@@ -88,13 +104,14 @@ export default class NavToggle extends Component {
 
   render() {
     const { expanded } = this.state;
+    const openClass = expanded ? dropdownOpen : null;
 
     return (
       <ul className={container}>
         <li className="event-switcher dropdown">
           <button
             aria-expanded={expanded}
-            className={toggleButton}
+            className={cx(toggleButton, openClass)}
             onClick={this.toggle}
             type="button"
           >
