@@ -1,5 +1,5 @@
-import React from 'react';
 import { css } from 'emotion';
+import React from 'react';
 
 const styles = css`
   background-color: #e5e5e5;
@@ -8,8 +8,6 @@ const styles = css`
   overflow: hidden;
 `;
 
-const Divider = () => (
-  <li className={styles} />
-);
+const Divider = () => <li className={styles} />;
 
 export default Divider;

@@ -1,15 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'emotion';
-
-import Logo from './Logo';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Container from '../Container';
+import Logo from './Logo';
+
 
 const styledNavbar = css`
   background: #111;
-  border: 1px solid transparent;
   color: white;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 20px;
   min-height: 58px;
   position: relative;

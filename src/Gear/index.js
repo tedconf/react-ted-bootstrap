@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'emotion';
-
-import Icon from './Icon';
-import Header from './Header';
-import Item from './Item';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Divider from './Divider';
+import Header from './Header';
+import Icon from './Icon';
+import Item from './Item';
 
 const styledDropdown = css`
-  position: relative;
   display: inline-block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
 `;
 
 const styledToggle = css`
@@ -21,9 +19,9 @@ const styledToggle = css`
 const styledList = css`
   background-clip: padding-box;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, .15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   float: left;
   font-size: 14px;
   left: 0;
@@ -73,7 +71,9 @@ class Gear extends Component {
         <div className={styledToggle} onClick={() => this.toggle()}>
           <Icon />
         </div>
-        {listOpen && <ul className={`${styledList} ${align[alignClass]}`}>{children}</ul>}
+        {listOpen && (
+          <ul className={`${styledList} ${align[alignClass]}`}>{children}</ul>
+        )}
       </div>
     );
   }

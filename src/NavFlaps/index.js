@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 const navRow = css`
   border-bottom: 1px solid #ddd;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: flex;
   font-size: 18px;
   font-weight: bold;

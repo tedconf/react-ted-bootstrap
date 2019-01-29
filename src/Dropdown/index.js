@@ -8,7 +8,6 @@ const styledLabel = css`
   color: #444;
   cursor: pointer;
   display: flex;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
@@ -23,7 +22,6 @@ const dropdownList = css`
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   display: none;
   float: left;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   left: 0;
   list-style: none;

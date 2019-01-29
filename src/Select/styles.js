@@ -9,8 +9,8 @@ export const styledList = css`
   background-clip: padding-box;
   background-color: #fff;
   border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, .15);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   float: left;
   font-size: 14px;
   left: 0;
@@ -35,7 +35,6 @@ export const styledSelect = css`
   color: #666;
   cursor: pointer;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   height: 40px;
   line-height: 22px;
@@ -53,7 +52,8 @@ export const styledSelect = css`
   &:focus {
     border-color: #66afe9;
     color: #444;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(102, 175, 233, 0.6);
     outline: 0;
   }
 `;
@@ -72,7 +72,6 @@ export const styledCaret = css`
 
 export const styledLabel = css`
   display: inline-block;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;

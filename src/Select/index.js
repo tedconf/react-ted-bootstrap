@@ -6,8 +6,6 @@ import Header from './Header';
 import Item from './Item';
 import * as styles from './styles';
 
-
-
 /* eslint-disable react/no-unused-state */
 export default class Select extends Component {
   static Header = Header;
@@ -53,9 +51,9 @@ export default class Select extends Component {
 
   handleClickOutside(event) {
     if (
-      this.wrapperRef
-      && !this.wrapperRef.contains(event.target)
-      && this.state.listOpen
+      this.wrapperRef &&
+      !this.wrapperRef.contains(event.target) &&
+      this.state.listOpen
     ) {
       this.toggleOpen();
     }

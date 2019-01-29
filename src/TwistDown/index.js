@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Caret from '../utils/Caret';
 
-
 const container = css`
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   width: 100%;
 `;
@@ -14,8 +12,8 @@ const container = css`
 const button = css`
   align-items: center;
   appearance: none;
-  border: 0;
   border-radius: 0;
+  border: 0;
   color: #111;
   cursor: pointer;
   display: flex;
@@ -24,7 +22,7 @@ const button = css`
   margin-bottom: 12px;
   outline: none;
   padding: 0;
-  text-decoration: 'none;
+  text-decoration: none;
 `;
 
 const label = css`
