@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import { css, cx } from 'emotion';
 import PropTypes from 'prop-types';
-import { css } from 'emotion';
+import React, { Component } from 'react';
 
 const styledTable = css`
   background-color: transparent;
@@ -65,16 +65,12 @@ const flexDiv = css`
 `;
 
 export default class DataTable extends Component {
-  constructor() {
-    super();
+  state = {
+    sorted: '',
+    sortDirection: 'desc',
+  };
 
-    this.state = {
-      sorted: '',
-      sortDirection: 'desc',
-    };
-  }
-
-  onSort(column, isSortable) {
+  onSort = (column, isSortable) => {
     if (!isSortable || !this.props.onSort) return;
 
     const { sorted } = this.state;
@@ -86,43 +82,51 @@ export default class DataTable extends Component {
     });
 
     this.props.onSort(column, sortDirection);
-  }
+  };
 
-  setSortDirection(oldCol, newCol) {
+  setSortDirection = (oldCol, newCol) => {
     const { sortDirection } = this.state;
 
     return sortDirection === 'asc' && oldCol === newCol ? 'desc' : 'asc';
-  }
+  };
 
-  buildHeadings(headings) {
-    return (
-      <tr>
-        {headings.map((h, index) => {
-          const isSortable = h.sortable !== undefined && h.sortable;
-          const sortableClass = isSortable ? sortable : '';
+  handleClick = (e, onClick) => {
+    // Don't call onClick methods if the user is clicking on a link or button
+    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+      return false;
+    }
 
-          return (
-            <th
-              key={index}
-              className={`${styledTh} ${sortableClass}`}
-              onClick={() => this.onSort(index, isSortable)}
-            >
-              <div className={flexDiv}>
-                {h.label}
-                {this.renderCaret(index)}
-              </div>
-            </th>
-          );
-        })}
-      </tr>
-    );
-  }
+    return onClick();
+  };
 
-  buildRows(rows) {
-    return rows.map((row, index) => (
+  buildHeadings = headings => (
+    <tr>
+      {headings.map((h, index) => {
+        const isSortable = h.sortable !== undefined && h.sortable;
+        const sortableClass = isSortable ? sortable : '';
+
+        return (
+          <th
+            key={index}
+            className={cx(styledTh, sortableClass)}
+            onClick={() => this.onSort(index, isSortable)}
+          >
+            <div className={flexDiv}>
+              {h.label}
+              {this.renderCaret(index)}
+            </div>
+          </th>
+        );
+      })}
+    </tr>
+  );
+
+  buildRows = rows =>
+    rows.map((row, index) => (
       <tr
         key={index}
         className={`${styledRow[row.className ? row.className : 'base']}`}
+        onClick={row.onClick ? e => this.handleClick(e, row.onClick) : null}
       >
         {row.data.map((cell, cellindex) => (
           <td className={styledTd} key={cellindex}>
@@ -131,9 +135,8 @@ export default class DataTable extends Component {
         ))}
       </tr>
     ));
-  }
 
-  renderCaret(column) {
+  renderCaret = column => {
     if (this.state.sorted !== column) return;
 
     const rotate = this.state.sortDirection === 'desc' ? 'rotateX(180deg)' : '';
@@ -152,7 +155,7 @@ export default class DataTable extends Component {
         />
       </svg>
     );
-  }
+  };
 
   render() {
     const { headings, rows } = this.props;

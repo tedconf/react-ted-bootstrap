@@ -1,3 +1,6 @@
+import { action } from '@storybook/addon-actions';
+import React from 'react';
+
 export const headings = [
   {
     label: 'First name',
@@ -17,22 +20,15 @@ export const rows = [
     data: [
       'Jon',
       'Bellah',
-      '@jonbellah',
+      <a href="https://twitter.com/jonbellah">@jonbellah</a>,
     ],
+    onClick: action('onClick'),
   },
   {
-    data: [
-      'Rômulo',
-      'Machado',
-      '@romulomachado_',
-    ],
+    data: ['Rômulo', 'Machado', '@romulomachado_'],
     className: 'success',
   },
   {
-    data: [
-      'Vince',
-      'Speelman',
-      '@vinspee',
-    ],
+    data: ['Vince', 'Speelman', '@vinspee'],
   },
 ];

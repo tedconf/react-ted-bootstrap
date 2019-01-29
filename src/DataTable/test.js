@@ -6,6 +6,7 @@ import { headings, rows } from './sampleData';
 
 configure({ adapter: new Adapter() });
 
+
 describe('Button', () => {
   it('should render without throwing an error', () => {
     expect(shallow(<DataTable headings={headings} rows={rows} />)

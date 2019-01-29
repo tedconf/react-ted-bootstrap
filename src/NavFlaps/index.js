@@ -1,9 +1,9 @@
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 import React, { Component } from 'react';
 
 const navRow = css`
   border-bottom: 1px solid #ddd;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: flex;
   font-size: 18px;
   font-weight: bold;
@@ -27,39 +27,39 @@ const selected = css`
 `;
 
 export default class NavFlaps extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    selected: this.props.selected || 0,
+  };
 
-    this.state = {
-      selected: this.props.selected || 0,
-    };
-  }
-
-  handleChange(index) {
+  handleChange = index => {
     this.setState({ selected: index });
-  }
+  };
 
   render() {
+    const { children } = this.props;
     return (
       <div data-bootstrap-type="navFlaps">
         <ul className={navRow}>
-          {this.props.children.map((elem, index) => {
+          {children.map((elem, index) => {
             const style = index === this.state.selected ? selected : '';
 
             return (
               <li
-                className={`${navLabel} ${style}`}
+                className={cx(navLabel, style)}
                 key={index}
-                onClick={this.handleChange.bind(this, index)}
+                onClick={
+                  this.props.onClick
+                    ? () => this.props.onClick(index)
+                    : this.handleChange.bind(this, index)
+                }
               >
                 {elem.props.label}
               </li>
             );
           })}
         </ul>
-        <div className="tab">
-          {this.props.children[this.state.selected].props.content}
-        </div>
+        {}
+        <div className="tab">{children[this.state.selected].props.content}</div>
       </div>
     );
   }
