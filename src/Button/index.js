@@ -48,14 +48,8 @@ const theme = {
   `,
 };
 
-const Button = (props) => {
-  const {
-    type,
-    onClick,
-    onFocus,
-    onBlur,
-    children,
-  } = props;
+const Button = props => {
+  const { type, onClick, onFocus, onBlur, children } = props;
   const typeClass = type || 'base';
 
   return (

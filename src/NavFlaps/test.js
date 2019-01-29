@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() });
 
 const TestComponent = () => <div id="testComponent">testing</div>;
 
-describe('Select', () => {
+describe('NavFlaps', () => {
   it('should render without throwing an error', () => {
     expect(
       shallow(

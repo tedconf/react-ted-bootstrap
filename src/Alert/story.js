@@ -9,9 +9,9 @@ storiesOf('Alert', module)
     withInfo(`
       Success alert.
   `)(() => (
-    <Alert type="success">
-      <strong>Success!</strong> You successfully read this important message.
-    </Alert>
+      <Alert type="success">
+        <strong>Success!</strong> You successfully read this important message.
+      </Alert>
     )),
   )
   .add(
@@ -19,10 +19,10 @@ storiesOf('Alert', module)
     withInfo(`
       Info alert. This is the default if you do not provide a type.
   `)(() => (
-    <Alert type="info">
-      <strong>Info.</strong> This alert needs your attention, but it's not
-      super important.
-    </Alert>
+      <Alert type="info">
+        <strong>Info.</strong> This alert needs your attention, but it's not
+        super important.
+      </Alert>
     )),
   )
   .add(
@@ -30,10 +30,10 @@ storiesOf('Alert', module)
     withInfo(`
       Warning alert.
   `)(() => (
-    <Alert type="warning">
-      <strong>Warning!</strong> Better check yourself, you're not looking too
-      good.
-    </Alert>
+      <Alert type="warning">
+        <strong>Warning!</strong> Better check yourself, you're not looking too
+        good.
+      </Alert>
     )),
   )
   .add(
@@ -41,9 +41,9 @@ storiesOf('Alert', module)
     withInfo(`
       Danger alert.
   `)(() => (
-    <Alert type="danger">
-      <strong>Danger!</strong> Change a few things up and try submitting
-      again.
-    </Alert>
+      <Alert type="danger">
+        <strong>Danger!</strong> Change a few things up and try submitting
+        again.
+      </Alert>
     )),
   );

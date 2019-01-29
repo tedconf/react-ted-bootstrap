@@ -18,7 +18,8 @@
     "react/destructuring-assignment": 0,
     "react/no-access-state-in-setstate": 0,
     "react/jsx-one-expression-per-line": 0,
-    "react/prop-types": 1
+    "react/prop-types": 1,
+    "react/jsx-indent": 0
   },
   "globals": {
     "document": 0

@@ -27,14 +27,8 @@ storiesOf('NavFlaps', module)
         With click handler
     `)(() => (
       <NavFlaps onClick={action('onClick')}>
-        <Tab
-          label="Tab 1"
-          content={<ContentOne />}
-        />
-        <Tab
-          label="Tab 2"
-          content={<ContentTwo />}
-        />
+        <Tab label="Tab 1" content={<ContentOne />} />
+        <Tab label="Tab 2" content={<ContentTwo />} />
       </NavFlaps>
     )),
   );

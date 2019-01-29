@@ -13,18 +13,18 @@ const container = css`
   }
 
   li a {
-    position: relative;
     display: block;
+    position: relative;
   }
 `;
 
 const toggleButton = css`
   -webkit-appearance: none;
+  background: transparent;
   border: 0;
   color: #fff;
-  outline: none;
   font-size: 18px;
-  background: transparent;
+  outline: none;
   padding: 19px 15px;
 `;
 
@@ -44,22 +44,35 @@ const dropdownMenu = css`
   background-clip: padding-box;
   background-color: #fff;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   display: block;
   float: left;
   font-size: 14px;
   left: auto;
-  right: 0;
   list-style: none;
-  margin: 2px 0 0;
+  margin: 0;
   min-width: 160px;
   padding: 5px 0;
   position: absolute;
+  right: 0;
   text-align: left;
   top: 100%;
   z-index: 1000;
+
+  a,
+  button {
+    clear: both;
+    color: #333;
+    display: block;
+    font-weight: 400;
+    line-height: 1.42857;
+    padding: 3px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
 `;
 
 export default class NavToggle extends Component {

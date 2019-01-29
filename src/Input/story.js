@@ -1,9 +1,7 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-
+import { storiesOf } from '@storybook/react';
+import React from 'react';
 import Input from './index';
 
 storiesOf('Input', module)
@@ -19,19 +17,5 @@ storiesOf('Input', module)
       />
     )),
   )
-  .add(
-    'Password',
-    withInfo()(() => (
-      <Input
-        type="password"
-      />
-    )),
-  )
-  .add(
-    'Textarea',
-    withInfo()(() => (
-      <Input
-        type="textarea"
-      />
-    )),
-  );
+  .add('Password', withInfo()(() => <Input type="password" />))
+  .add('Textarea', withInfo()(() => <Input type="textarea" />));

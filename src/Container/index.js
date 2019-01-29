@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'emotion';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import mediaQueries from '../utils/media-queries';
+
 
 const styledContainer = css`
   margin-left: auto;
@@ -28,13 +28,9 @@ const styledContainer = css`
   }
 `;
 
-const Container = (props) => {
+const Container = props => {
   const { children } = props;
-  return (
-    <div className={styledContainer}>
-      {children}
-    </div>
-  );
+  return <div className={styledContainer}>{children}</div>;
 };
 
 Container.propTypes = {

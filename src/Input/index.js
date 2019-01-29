@@ -1,48 +1,6 @@
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
-
-const Input = props => {
-  switch (props.type) {
-    case 'password':
-      return (
-        <input
-          type="password"
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onBlur={props.onBlur}
-          className={`${styles} ${styledInput}`}
-        />
-      );
-    case 'textarea':
-      return (
-        <textarea
-          className={styles}
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onBlur={props.onBlur}
-        >
-          {props.children}
-        </textarea>
-      );
-    default:
-      return (
-        <input
-          type="text"
-          className={`${styles} ${styledInput}`}
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-          onFocus={props.onFocus}
-          onBlur={props.onBlur}
-        />
-      );
-  }
-};
 
 const styles = css`
   background-color: #fff;
@@ -70,11 +28,52 @@ const styledInput = css`
   height: 40px;
 `;
 
+const Input = props => {
+  switch (props.type) {
+    case 'password':
+      return (
+        <input
+          type="password"
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
+          className={cx(styles, styledInput)}
+        />
+      );
+    case 'textarea':
+      return (
+        <textarea
+          className={styles}
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
+        >
+          {props.children}
+        </textarea>
+      );
+    default:
+      return (
+        <input
+          type="text"
+          className={cx(styles, styledInput)}
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
+          onFocus={props.onFocus}
+          onBlur={props.onBlur}
+        />
+      );
+  }
+};
+
 Input.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  label: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
