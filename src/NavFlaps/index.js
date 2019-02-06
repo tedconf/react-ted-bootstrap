@@ -30,7 +30,7 @@ const navLabel = css`
   padding: 7px 0 4px;
 `;
 
-const selected = css`
+const selectedStyle = css`
   background-color: transparent;
   border-bottom-color: #e62b1e;
 `;
@@ -42,7 +42,7 @@ const subSelected = css`
 
 export default class NavFlaps extends Component {
   state = {
-    selected: this.props.selected || 0,
+    selected: 0,
   };
 
   handleChange = index => {
@@ -50,18 +50,16 @@ export default class NavFlaps extends Component {
   };
 
   render() {
-    const { children, type } = this.props;
+    const { children, type, selected } = this.props;
+    const isSelected = selected || this.state.selected;
     const wrapperClass = type && type === 'subnav' ? subNavRow : navRow;
-    const selectedClass = type && type === 'subnav' ? subSelected : selected;
+    const selectedClass = type && type === 'subnav' ? subSelected : selectedStyle;
 
     return (
       <div data-bootstrap-type="navFlaps">
         <ul className={wrapperClass}>
           {children.map((elem, index) => {
-            const style =
-              index === this.state.selected || this.props.selected
-                ? selectedClass
-                : '';
+            const style = index === isSelected ? selectedClass : '';
 
             return (
               <li
