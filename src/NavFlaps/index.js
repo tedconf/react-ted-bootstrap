@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 const navRow = css`
   border-bottom: 1px solid #ddd;
   display: flex;
+  font-family: inherit;
   font-size: 18px;
   font-weight: bold;
   list-style: none;

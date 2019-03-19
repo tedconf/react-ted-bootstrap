@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import mediaQueries from '../utils/media-queries';
 
-
 const styledContainer = css`
+  font-family: inherit;
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;

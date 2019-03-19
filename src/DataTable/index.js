@@ -6,6 +6,7 @@ const styledTable = css`
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
+  font-family: inherit;
   font-size: 14px;
   margin-bottom: 20px;
   max-width: 100%;

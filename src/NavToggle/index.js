@@ -68,6 +68,7 @@ const dropdownMenu = css`
     clear: both;
     color: #333;
     display: block;
+    font-family: inherit;
     font-weight: 400;
     line-height: 1.42857;
     padding: 3px 20px;

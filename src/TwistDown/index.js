@@ -17,6 +17,7 @@ const button = css`
   color: #111;
   cursor: pointer;
   display: flex;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 12px;

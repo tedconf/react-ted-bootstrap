@@ -12,6 +12,7 @@ const button = css`
   color: white;
   cursor: pointer;
   display: inline-block;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.05ex;

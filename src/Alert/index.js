@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const alertBox = css`
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
   border-radius: 4px;
-  color: #333333;
+  border: 1px solid transparent;
+  color: #333;
+  font-family: inherit;
+  margin-bottom: 20px;
+  padding: 15px;
 `;
 
 const theme = {

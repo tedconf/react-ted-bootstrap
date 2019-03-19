@@ -9,6 +9,7 @@ const styles = css`
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-sizing: border-box;
+  font-family: inherit;
   font-size: 14px;
   line-height: 1.42857;
   padding: 9px 12px;

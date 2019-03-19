@@ -21,6 +21,7 @@ const brand = css`
   color: #fff;
   cursor: pointer;
   display: flex;
+  font-family: inherit;
   font-size: 25px;
   font-weight: 500;
   height: 58px;

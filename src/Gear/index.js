@@ -23,6 +23,7 @@ const styledList = css`
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   float: left;
+  font-family: inherit;
   font-size: 14px;
   left: 0;
   list-style: none;

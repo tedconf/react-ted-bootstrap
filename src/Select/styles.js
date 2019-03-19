@@ -12,6 +12,7 @@ export const styledList = css`
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   float: left;
+  font-family: inherit;
   font-size: 14px;
   left: 0;
   list-style: none;
@@ -35,6 +36,7 @@ export const styledSelect = css`
   color: #666;
   cursor: pointer;
   display: block;
+  font-family; inherit;
   font-size: 13px;
   height: 40px;
   line-height: 22px;
