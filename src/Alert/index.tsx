@@ -1,6 +1,14 @@
 import { css, cx } from 'emotion';
-import PropTypes from 'prop-types';
 import React from 'react';
+
+interface Props {
+  /** message to display in the alert box */
+  children: React.ReactChild;
+  /** the type of alert to show */
+  type: 'success' | 'info' | 'warning' | 'danger';
+  /** action to fire on close */
+  onClose?: () => void;
+}
 
 const alertBox = css`
   border-radius: 4px;
@@ -26,25 +34,17 @@ const theme = {
   `,
 };
 
-const Alert = ({ type, onClose, children }) => {
+export default ({ type, onClose, children }: Props) => {
   const typeClass = type || 'info';
 
   return (
     <div data-testid="alert" className={cx(alertBox, theme[typeClass])}>
       {children}
       {onClose ? (
-        <button type="button" onClick={onClose}>
+        <button data-testid="alertClose" type="button" onClick={onClose}>
           &times;
         </button>
       ) : null}
     </div>
   );
 };
-
-Alert.propTypes = {
-  type: PropTypes.string.isRequired,
-  children: PropTypes.node,
-  onClose: PropTypes.func,
-};
-
-export default Alert;

@@ -1,6 +1,18 @@
 import { css } from 'emotion';
-import PropTypes from 'prop-types';
 import React from 'react';
+
+interface Props {
+  /** text to display in the button */
+  children: React.ReactChild;
+  /** button type */
+  type?: 'primary' | 'warning' | 'success' | 'info' | 'danger';
+  /** onChange handler */
+  onClick?: () => void;
+  /** onFocus handler */
+  onFocus?: () => void;
+  /** onBlur handler */
+  onBlur?: () => void;
+}
 
 const button = css`
   background-color: #ededed;
@@ -49,8 +61,7 @@ const theme = {
   `,
 };
 
-const Button = props => {
-  const { type, onClick, onFocus, onBlur, children } = props;
+export default ({ type, onClick, onFocus, onBlur, children }: Props) => {
   const typeClass = type || 'base';
 
   return (
@@ -60,19 +71,9 @@ const Button = props => {
       onClick={onClick}
       onBlur={onBlur}
       onFocus={onFocus}
-      data-bootstrap-type="button"
+      data-testid="button"
     >
       {children}
     </button>
   );
 };
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  type: PropTypes.string,
-  onClick: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-};
-
-export default Button;

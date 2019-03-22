@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": ["es2017", "es7", "es6", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./build",
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es5",
+    "types": ["node", "jest", "react", "core-js"]
+  },
+  "include": ["src/**/*", "./jest.setup.ts"],
+  "exclude": ["node_modules", "build", "scripts", "**/story.tsx", "**/test.tsx"]
+}

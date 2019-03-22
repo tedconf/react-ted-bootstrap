@@ -1,7 +1,11 @@
 import { css } from 'emotion';
-import PropTypes from 'prop-types';
 import React from 'react';
 import mediaQueries from '../utils/media-queries';
+
+interface Props {
+  /** text to display in the button */
+  children: React.ReactChild;
+}
 
 const styledContainer = css`
   font-family: inherit;
@@ -28,13 +32,6 @@ const styledContainer = css`
   }
 `;
 
-const Container = props => {
-  const { children } = props;
-  return <div className={styledContainer}>{children}</div>;
-};
-
-Container.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default Container;
+export default ({ children }: Props) => (
+  <div className={styledContainer}>{children}</div>
+);

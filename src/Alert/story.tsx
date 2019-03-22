@@ -10,7 +10,10 @@ storiesOf('Alert', module)
       Success alert.
   `)(() => (
       <Alert type="success">
-        <strong>Success!</strong> You successfully read this important message.
+        <div>
+          <strong>Success!</strong> You successfully read this important
+          message.
+        </div>
       </Alert>
     )),
   )
@@ -20,8 +23,10 @@ storiesOf('Alert', module)
       Info alert. This is the default if you do not provide a type.
   `)(() => (
       <Alert type="info">
-        <strong>Info.</strong> This alert needs your attention, but it's not
-        super important.
+        <div>
+          <strong>Info.</strong> This alert needs your attention, but it's not
+          super important.
+        </div>
       </Alert>
     )),
   )
@@ -31,8 +36,10 @@ storiesOf('Alert', module)
       Warning alert.
   `)(() => (
       <Alert type="warning">
-        <strong>Warning!</strong> Better check yourself, you're not looking too
-        good.
+        <div>
+          <strong>Warning!</strong> Better check yourself, you're not looking
+          too good.
+        </div>
       </Alert>
     )),
   )
@@ -42,8 +49,10 @@ storiesOf('Alert', module)
       Danger alert.
   `)(() => (
       <Alert type="danger">
-        <strong>Danger!</strong> Change a few things up and try submitting
-        again.
+        <div>
+          <strong>Danger!</strong> Change a few things up and try submitting
+          again.
+        </div>
       </Alert>
     )),
   );

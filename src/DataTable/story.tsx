@@ -1,5 +1,8 @@
 import { action } from '@storybook/addon-actions';
+import { withInfo } from '@storybook/addon-info';
+import { storiesOf } from '@storybook/react';
 import React from 'react';
+import DataTable from './index';
 
 export const headings = [
   {
@@ -32,3 +35,14 @@ export const rows = [
     data: ['Vince', 'Speelman', '@vinspee'],
   },
 ];
+
+storiesOf('DataTable', module).add(
+  'Default',
+  withInfo(`
+      Supported classes: active, success, info, warning, danger.
+    `)(() => (
+    <DataTable headings={headings} rows={rows} onSort={action('sort')}>
+      Default
+    </DataTable>
+  )),
+);

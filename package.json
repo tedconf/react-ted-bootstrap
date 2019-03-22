@@ -1,24 +1,31 @@
 {
-  "name": "@tedprivate/react-ted-bootstrap",
+  "name": "react-ted-bootstrap",
+  "author": "Jon Bellah <jon@ted.com>",
+  "license": "MIT",
   "version": "0.5.4",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
+  "module": "build/index.es.js",
+  "types": "build/index.d.ts",
   "files": [
     "build"
   ],
   "scripts": {
-    "start": "start-storybook -p 9001 -c .storybook",
+    "build": "rimraf build && tsc",
     "deploy-storybook": "storybook-to-ghpages",
+    "format": "prettier --write \"src/**/*.tsx\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepublishOnly": "npm test && npm run lint && npm run build",
+    "preversion": "npm run lint",
+    "start": "start-storybook -p 9001 -c .storybook",
     "test": "jest",
-    "build": "webpack --config ./webpack.config.js --mode production",
-    "prepublish": "npm run build"
+    "test:watch": "jest --watch",
+    "version": "npm run format && git add -A src"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tedconf/react-ted-bootstrap.git"
   },
-  "author": "Jon Bellah <jon@ted.com>",
-  "license": "MIT",
   "peerDependencies": {
     "emotion": ">= 10.0.5",
     "react": ">= 16.3.3",
@@ -26,40 +33,57 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.2.1",
-    "@babel/preset-env": "^7.2.0",
-    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.0.3",
     "@storybook/addon-info": "^5.0.3",
     "@storybook/addon-options": "^5.0.3",
-    "@storybook/addon-storyshots": "^5.0.3",
     "@storybook/react": "^5.0.3",
     "@storybook/storybook-deployer": "^2.3.0",
+    "@types/core-js": "^2.5.0",
+    "@types/jest": "^24.0.0",
+    "@types/react": "^16.3.5",
+    "@types/storybook__addon-actions": "^3.4.1",
+    "@types/storybook__addon-info": "^4.1.1",
+    "@types/storybook__react": "^4.0.0",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.4",
+    "babel-runtime": "^6.0.0",
     "emotion": "^10.0.5",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16.3": "^1.4.1",
-    "eslint": "^5.0.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.4.0",
     "jest": "^24.5.0",
+    "jest-dom": "^3.0.0",
     "prettier": "^1.16.1",
-    "prop-types": "^15.6.1",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "react-test-renderer": "16.3.2",
+    "react": "^16.8.0",
+    "react-docgen-typescript-loader": "^3.0.0",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-dom": "^16.8.0",
+    "react-testing-library": "^6.0.2",
+    "rimraf": "^2.6.2",
     "storybook-addon-a11y": "^3.1.9",
+    "storybook-addon-jsx": "^7.0.2",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2",
     "webpack": "^4.0.1",
     "webpack-cli": "^3.0.4"
   },
   "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "preset": "ts-jest",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "setupFilesAfterEnv": [
+      "./jest.setup.ts"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
     }
