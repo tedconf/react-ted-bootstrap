@@ -1,7 +1,12 @@
 import { css, cx } from 'emotion';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import Caret from '../utils/Caret';
+
+interface Props {
+  /** A callback function when the dropdown is clicked */
+  onClick: (value: string) => void;
+  options: any[];
+}
 
 const styledLabel = css`
   align-items: center;
@@ -53,12 +58,14 @@ const dropdownItem = css`
   &:hover,
   &:active,
   &:focus {
-    color: #262626;
     background-color: #f5f5f5;
+    color: #262626;
   }
 `;
 
-export default class Dropdown extends Component {
+export default class Dropdown extends Component<Props> {
+  private wrapperRef = createRef<HTMLDivElement>();
+
   state = {
     expanded: false,
     selected: false,
@@ -72,7 +79,7 @@ export default class Dropdown extends Component {
     document.removeEventListener('click', this.handleClickOutside);
   }
 
-  onClick = (e, value) => {
+  onClick = (e: React.MouseEvent, value: string) => {
     e.preventDefault();
 
     this.setState({ expanded: false });
@@ -80,14 +87,10 @@ export default class Dropdown extends Component {
     this.props.onClick(value);
   };
 
-  setWrapperRef = node => {
-    this.wrapperRef = node;
-  };
-
-  handleClickOutside = event => {
+  handleClickOutside = (e: Event) => {
     if (
       this.wrapperRef &&
-      !this.wrapperRef.contains(event.target) &&
+      !this.wrapperRef.contains(e.target) &&
       this.state.expanded
     ) {
       this.toggleExpanded();
@@ -113,7 +116,7 @@ export default class Dropdown extends Component {
     ));
 
     return (
-      <div style={{ position: 'relative' }} ref={this.setWrapperRef}>
+      <div style={{ position: 'relative' }} ref={this.wrapperRef}>
         <div className={styledLabel} onClick={() => this.toggleExpanded()}>
           <span style={{ marginRight: '6px' }}>{label}</span>
           <Caret />
@@ -129,6 +132,3 @@ export default class Dropdown extends Component {
   }
 }
 
-Dropdown.propTypes = {
-  onClick: PropTypes.func,
-};

@@ -1,9 +1,16 @@
 import { css } from 'emotion';
-import PropTypes from 'prop-types';
 import React from 'react';
 import Container from '../Container';
 import Logo from './Logo';
 
+interface Props {
+  /** application name */
+  title: string;
+  /** event to fire when clicking the logo area */
+  onClick?: () => void;
+  /** right nav menu element */
+  rightMenu?: string | React.ReactElement;
+}
 
 const styledNavbar = css`
   background: #111;
@@ -41,38 +48,16 @@ const navRight = css`
   align-items: center;
 `;
 
-const Navbar = (props) => {
-  const {
-    title,
-    onClick,
-    rightMenu,
-  } = props;
-
-  return (
-    <header className={styledNavbar}>
-      <Container>
-        <div className={inner}>
-          <button type="button" className={brand} onClick={onClick}>
-            <Logo />
-            {title}
-          </button>
-          <div className={navRight}>
-            {rightMenu}
-          </div>
-        </div>
-      </Container>
-    </header>
-  );
-};
-
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  rightMenu: PropTypes.oneOf([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.node,
-  ]),
-};
-
-export default Navbar;
+export default ({ title, onClick, rightMenu }: Props) => (
+  <header className={styledNavbar}>
+    <Container>
+      <div className={inner}>
+        <button type="button" data-testid="button" className={brand} onClick={onClick}>
+          <Logo />
+          <span data-testid="title">{title}</span>
+        </button>
+        <div className={navRight}>{rightMenu}</div>
+      </div>
+    </Container>
+  </header>
+);

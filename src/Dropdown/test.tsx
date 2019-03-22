@@ -1,10 +1,5 @@
-import { configure, mount, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16.3';
 import React from 'react';
 import Dropdown from './index';
-
-
-configure({ adapter: new Adapter() });
 
 const options = [
   {
@@ -33,7 +28,10 @@ describe('Dropdown', () => {
     const click = jest.fn();
     const wrapper = mount(<Dropdown options={options} onClick={click} />);
 
-    wrapper.find('li').first().simulate('click');
+    wrapper
+      .find('li')
+      .first()
+      .simulate('click');
     expect(click).toHaveBeenCalled();
   });
 });

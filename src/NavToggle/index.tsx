@@ -1,6 +1,15 @@
 import { css, cx } from 'emotion';
 import React, { Component } from 'react';
 
+interface Props {
+  children?: React.ReactChild[];
+  label?: string;
+}
+
+interface State {
+  expanded: boolean;
+}
+
 const container = css`
   display: inline-block;
   list-style: none;
@@ -92,13 +101,14 @@ const dropdownOpen = css`
     transform: rotate(180deg);
   }
 `;
-export default class NavToggle extends Component {
+
+export default class NavToggle extends Component<Props> {
   state = {
     expanded: false,
   };
 
   toggle = () => {
-    this.setState(prevState => ({
+    this.setState((prevState: State) => ({
       expanded: !prevState.expanded,
     }));
   };

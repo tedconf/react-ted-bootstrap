@@ -15,8 +15,6 @@ storiesOf('Navbar', module).add(
       title="Bootstrap"
       onClick={action('button-click')}
       rightMenu={<RightMenu />}
-    >
-      Default
-    </Navbar>
+    />
   )),
 );
