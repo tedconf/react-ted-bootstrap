@@ -36,7 +36,7 @@ storiesOf('NavFlaps', module)
     withInfo(`
         SubnavFlap
     `)(() => (
-      <NavFlaps onClick={action('onClick')} type="subnav">
+      <NavFlaps type="subnav">
         <Tab label="Tab 1" content={<ContentOne />} />
         <Tab label="Tab 2" content={<ContentTwo />} />
       </NavFlaps>

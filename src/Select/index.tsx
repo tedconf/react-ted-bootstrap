@@ -55,7 +55,7 @@ export default class Select extends Component<Props> {
   };
 
   handleClickOutside = (e: Event) => {
-    const targetNode = e.currentTarget instanceof Node ? e.currentTarget : null;
+    const targetNode = e.target instanceof Node ? e.target : null;
 
     if (
       this.wrapperRef &&
