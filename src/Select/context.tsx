@@ -1,7 +1,9 @@
 import { createContext } from 'react';
 
 const { Provider, Consumer } = createContext({
-  onChange: () => {},
+  // @ts-ignore
+  onChange: (value: string) => {},
+  listOpen: false,
 });
 
 export { Provider, Consumer };

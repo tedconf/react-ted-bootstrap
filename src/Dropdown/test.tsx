@@ -1,4 +1,5 @@
 import React from 'react';
+import { fireEvent, render } from 'react-testing-library';
 import Dropdown from './index';
 
 const options = [
@@ -14,24 +15,21 @@ const options = [
 ];
 
 describe('Dropdown', () => {
-  it('should render without throwing an error', () => {
-    expect(shallow(<Dropdown options={options} />).exists('ul')).toBe(true);
-  });
-
   it('should render all options', () => {
-    const wrapper = mount(<Dropdown options={options} />);
+    const { queryAllByTestId } = render(
+      <Dropdown options={options} onClick={jest.fn()} />,
+    );
 
-    expect(wrapper.find('li').length).toBe(3);
+    expect(queryAllByTestId('dropdownItem').length).toBe(3);
   });
 
   it('should register onClick functions passed as props', () => {
     const click = jest.fn();
-    const wrapper = mount(<Dropdown options={options} onClick={click} />);
+    const { getByTestId } = render(
+      <Dropdown options={options} onClick={click} />,
+    );
 
-    wrapper
-      .find('li')
-      .first()
-      .simulate('click');
+    fireEvent.click(getByTestId('dropdownItem'));
     expect(click).toHaveBeenCalled();
   });
 });

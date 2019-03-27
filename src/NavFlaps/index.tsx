@@ -1,6 +1,18 @@
 import { css, cx } from 'emotion';
 import React, { Component } from 'react';
 
+export interface NavProps {
+  onClick?: (index: number) => void;
+  type?: string;
+  selected?: number;
+  children: React.ReactElement[];
+}
+
+export interface TabProps {
+  content: React.ReactElement;
+  label: string;
+}
+
 const navRow = css`
   border-bottom: 1px solid #ddd;
   display: flex;
@@ -41,20 +53,31 @@ const subSelected = css`
   border-bottom-color: #666;
 `;
 
-export default class NavFlaps extends Component {
+export const Tab = ({ content }: TabProps) => <div>{content}</div>;
+
+export default class NavFlaps extends Component<NavProps> {
   state = {
     selected: 0,
   };
 
-  handleChange = index => {
+  handleChange = (index: number) => {
     this.setState({ selected: index });
+  };
+
+  doClick = (index: number) => {
+    if (this.props.onClick) {
+      return this.props.onClick(index);
+    }
+
+    return this.handleChange(index);
   };
 
   render() {
     const { children, type, selected } = this.props;
     const isSelected = selected || this.state.selected;
     const wrapperClass = type && type === 'subnav' ? subNavRow : navRow;
-    const selectedClass = type && type === 'subnav' ? subSelected : selectedStyle;
+    const selectedClass =
+      type && type === 'subnav' ? subSelected : selectedStyle;
 
     return (
       <div data-bootstrap-type="navFlaps">
@@ -66,11 +89,8 @@ export default class NavFlaps extends Component {
               <li
                 className={cx(navLabel, style)}
                 key={index}
-                onClick={
-                  this.props.onClick
-                    ? () => this.props.onClick(index)
-                    : this.handleChange.bind(this, index)
-                }
+                onClick={() => this.doClick(index)}
+                data-testid={`navLabel${index}`}
               >
                 {elem.props.label}
               </li>

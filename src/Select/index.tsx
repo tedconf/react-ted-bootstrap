@@ -1,31 +1,39 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Provider } from './context';
-import Divider from './Divider';
-import Header from './Header';
 import Item from './Item';
 import * as styles from './styles';
 
-/* eslint-disable react/no-unused-state */
-export default class Select extends Component {
+export interface Props {
+  label?: string;
+  onChange?: (value: string) => {};
+  multi?: boolean;
+}
+
+export interface HeaderProps {
+  children: React.ReactChild;
+}
+
+const Header = ({ children }: HeaderProps) => (
+  <li className={styles.headerStyles}>{children}</li>
+);
+const Divider = () => <li className={styles.dividerStyles} />;
+
+export default class Select extends Component<Props> {
+  private wrapperRef: React.RefObject<HTMLInputElement>;
+
   static Header = Header;
-
   static Item = Item;
-
   static Divider = Divider;
 
-  constructor(props) {
+  state = {
+    listOpen: false,
+    onChange: (value: string) => this.onChange(value),
+  };
+
+  constructor(props: Props) {
     super(props);
 
-    this.state = {
-      listOpen: false,
-      onChange: value => this.onChange(value),
-    };
-
-    this.toggleOpen = this.toggleOpen.bind(this);
-    this.setWrapperRef = this.setWrapperRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.wrapperRef = React.createRef();
   }
 
   componentDidMount() {
@@ -36,28 +44,28 @@ export default class Select extends Component {
     document.removeEventListener('click', this.handleClickOutside);
   }
 
-  onChange(value) {
+  onChange = (value: string) => {
     this.setState({ listOpen: this.props.multi });
-    this.props.onChange(value);
-  }
 
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
+    return this.props.onChange ? this.props.onChange(value) : null;
+  };
 
-  toggleOpen() {
+  toggleOpen = () => {
     this.setState({ listOpen: !this.state.listOpen });
-  }
+  };
 
-  handleClickOutside(event) {
+  handleClickOutside = (e: Event) => {
+    const targetNode = e.currentTarget instanceof Node ? e.currentTarget : null;
+
     if (
       this.wrapperRef &&
-      !this.wrapperRef.contains(event.target) &&
+      this.wrapperRef.current &&
+      !this.wrapperRef.current.contains(targetNode) &&
       this.state.listOpen
     ) {
       this.toggleOpen();
     }
-  }
+  };
 
   render() {
     const { label, children } = this.props;
@@ -65,12 +73,12 @@ export default class Select extends Component {
 
     return (
       <Provider value={this.state}>
-        <div className={styles.container} ref={this.setWrapperRef}>
+        <div className={styles.container} ref={this.wrapperRef}>
           <button
             type="button"
             className={styles.styledSelect}
             onClick={this.toggleOpen}
-            data-bootstrap-type="select"
+            data-testid="select"
           >
             {label}
             <span className={styles.styledCaret}>
@@ -90,9 +98,3 @@ export default class Select extends Component {
     );
   }
 }
-
-Select.propTypes = {
-  label: PropTypes.string,
-  onChange: PropTypes.func,
-  multi: PropTypes.bool,
-};

@@ -1,10 +1,14 @@
-import { css } from 'emotion';
-import PropTypes from 'prop-types';
+import { css, cx } from 'emotion';
 import React, { Component } from 'react';
+import Icon from '../utils/Gear';
 import Divider from './Divider';
 import Header from './Header';
-import Icon from './Icon';
 import Item from './Item';
+
+export interface Props {
+  children: React.ReactChild | React.ReactChild[];
+  right?: boolean;
+}
 
 const styledDropdown = css`
   display: inline-block;
@@ -43,46 +47,33 @@ const align = {
   `,
 };
 
-class Gear extends Component {
+export default class Gear extends Component<Props> {
   static Header = Header;
   static Item = Item;
   static Divider = Divider;
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      listOpen: false,
-    };
-  }
+  state = {
+    listOpen: false,
+  };
 
   toggle = () => {
-    this.setState(prevState => ({
-      listOpen: !prevState.listOpen,
-    }));
+    this.setState({
+      listOpen: !this.state.listOpen,
+    });
   };
 
   render() {
     const { children, right } = this.props;
     const { listOpen } = this.state;
-    const alignClass = right ? 'right' : '';
+    const alignClass = right ? align['right'] : '';
 
     return (
-      <div className={styledDropdown} eventTypes="click">
+      <div className={styledDropdown}>
         <div className={styledToggle} onClick={() => this.toggle()}>
           <Icon />
         </div>
-        {listOpen && (
-          <ul className={`${styledList} ${align[alignClass]}`}>{children}</ul>
-        )}
+        {listOpen && <ul className={cx(styledList, alignClass)}>{children}</ul>}
       </div>
     );
   }
 }
-
-Gear.propTypes = {
-  children: PropTypes.node.isRequired,
-  right: PropTypes.bool,
-};
-
-export default Gear;

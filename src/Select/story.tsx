@@ -8,16 +8,16 @@ storiesOf('Select', module)
   .add(
     'Default',
     withInfo()(() => (
-      <Select label="Test" onChange={action('onChange')}>
-        <Select.Item>Testing</Select.Item>
+      <Select label="Test" onChange={() => action('onChange')}>
+        <Select.Item value="one">Testing</Select.Item>
       </Select>
     )),
   )
   .add(
     'Multi-select',
     withInfo()(() => (
-      <Select multi label="Test" onChange={action('onChange')}>
-        <Select.Item value="testing" checked="false">
+      <Select multi label="Test" onChange={() => action('onChange')}>
+        <Select.Item value="testing" checked={false}>
           Testing
         </Select.Item>
         <Select.Item value="testing2">Testing 2</Select.Item>
@@ -30,10 +30,10 @@ storiesOf('Select', module)
     withInfo()(() => (
       <Select label="Select with headers">
         <Select.Header>Header</Select.Header>
-        <Select.Item>TED.com</Select.Item>
+        <Select.Item value="one">TED.com</Select.Item>
         <Select.Divider />
         <Select.Header>Different Header</Select.Header>
-        <Select.Item>TED.com</Select.Item>
+        <Select.Item value="two">TED.com</Select.Item>
       </Select>
     )),
   );

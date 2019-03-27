@@ -1,6 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'emotion';
+import React from 'react';
+
+export interface Props {
+  children: React.ReactChild;
+}
 
 const styles = css`
   & > a {
@@ -20,14 +23,4 @@ const styles = css`
   }
 `;
 
-const Item = props => (
-  <li className={styles}>
-    {props.children}
-  </li>
-);
-
-Item.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default Item;
+export default ({ children }: Props) => <li className={styles}>{children}</li>;

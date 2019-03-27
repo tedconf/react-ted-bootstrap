@@ -1,10 +1,10 @@
 import { css, cx } from 'emotion';
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import Caret from '../utils/Caret';
 
 interface Props {
   /** A callback function when the dropdown is clicked */
-  onClick: (value: string) => void;
+  onClick?: (value: string) => void;
   options: any[];
 }
 
@@ -64,12 +64,18 @@ const dropdownItem = css`
 `;
 
 export default class Dropdown extends Component<Props> {
-  private wrapperRef = createRef<HTMLDivElement>();
+  private wrapperRef: React.RefObject<HTMLInputElement>;
 
   state = {
     expanded: false,
     selected: false,
   };
+
+  constructor(props: Props) {
+    super(props);
+
+    this.wrapperRef = React.createRef();
+  }
 
   componentDidMount() {
     document.addEventListener('click', this.handleClickOutside);
@@ -84,13 +90,16 @@ export default class Dropdown extends Component<Props> {
 
     this.setState({ expanded: false });
 
-    this.props.onClick(value);
+    this.props.onClick ? this.props.onClick(value) : null;
   };
 
   handleClickOutside = (e: Event) => {
+    const targetNode = e.currentTarget instanceof Node ? e.currentTarget : null;
+
     if (
       this.wrapperRef &&
-      !this.wrapperRef.contains(e.target) &&
+      this.wrapperRef.current &&
+      !this.wrapperRef.current.contains(targetNode) &&
       this.state.expanded
     ) {
       this.toggleExpanded();
@@ -110,6 +119,7 @@ export default class Dropdown extends Component<Props> {
         className={dropdownItem}
         key={`${opt.label}${opt.index}`}
         onClick={e => this.onClick(e, opt.label)}
+        data-testid="dropdownItem"
       >
         {opt.label}
       </li>
@@ -124,6 +134,7 @@ export default class Dropdown extends Component<Props> {
         <ul
           className={cx(dropdownList, expandedClass)}
           aria-expanded={expanded}
+          data-testid="dropdownList"
         >
           {options}
         </ul>
@@ -131,4 +142,3 @@ export default class Dropdown extends Component<Props> {
     );
   }
 }
-

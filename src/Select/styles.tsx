@@ -79,3 +79,19 @@ export const styledLabel = css`
   margin-bottom: 5px;
   max-width: 100%;
 `;
+
+export const dividerStyles = css`
+  background-color: #e5e5e5;
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+`;
+
+export const headerStyles = css`
+  color: #999;
+  display: block;
+  font-size: 12px;
+  line-height: 1.42;
+  padding: 3px 20px;
+  white-space: nowrap;
+`;

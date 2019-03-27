@@ -1,6 +1,6 @@
-import { configure } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
 import { setDefaults } from '@storybook/addon-info';
+import { setOptions } from '@storybook/addon-options';
+import { configure } from '@storybook/react';
 
 // Option defaults:
 setOptions({
@@ -24,11 +24,11 @@ setDefaults({
   styles: {
     infoBody: {
       border: 'none',
-    }
+    },
   },
 });
 
-const req = require.context('../src/', true, /story\.js$/);
+const req = require.context('../src/', true, /story\.tsx$/);
 
 function loadStories() {
   req.keys().forEach(req);
