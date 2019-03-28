@@ -1,7 +1,0 @@
-
-version: 1.0
-vertical: conferences-admin
-production:
-  endpoint_url: https://tedconf.github.io/react-ted-bootstrap/
-staging:
-  endpoint_url:
