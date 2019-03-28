@@ -8,8 +8,6 @@ const styles = css`
   overflow: hidden;
 `;
 
-const Divider = () => (
-  <li className={styles} />
-);
+const Divider = () => <li className={styles} />;
 
 export default Divider;

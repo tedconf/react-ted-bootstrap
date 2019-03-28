@@ -10,5 +10,16 @@ import NavToggle from './NavToggle';
 import Select from './Select';
 import TwistDown from './TwistDown';
 
-export { Button, Container, DataTable, Input, Navbar, Select, Dropdown, TwistDown, NavFlaps, Tab, NavToggle, };
-
+export {
+  Button,
+  Container,
+  DataTable,
+  Input,
+  Navbar,
+  Select,
+  Dropdown,
+  TwistDown,
+  NavFlaps,
+  Tab,
+  NavToggle,
+};

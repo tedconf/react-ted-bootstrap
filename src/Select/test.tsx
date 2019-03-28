@@ -19,7 +19,7 @@ describe('Select', () => {
       </Select>,
     );
 
-    fireEvent.click(getByTestId('select'))
+    fireEvent.click(getByTestId('select'));
     fireEvent.click(getByTestId('item-testing'));
     expect(change).toHaveBeenCalled();
   });

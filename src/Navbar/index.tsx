@@ -52,7 +52,12 @@ export default ({ title, onClick, rightMenu }: Props) => (
   <header className={styledNavbar}>
     <Container>
       <div className={inner}>
-        <button type="button" data-testid="button" className={brand} onClick={onClick}>
+        <button
+          type="button"
+          data-testid="button"
+          className={brand}
+          onClick={onClick}
+        >
           <Logo />
           <span data-testid="title">{title}</span>
         </button>

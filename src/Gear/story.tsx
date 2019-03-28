@@ -9,7 +9,9 @@ storiesOf('Gear', module)
     'Simple gear',
     withInfo()(() => (
       <Gear>
-        <Gear.Item><a href='https://ted.com'>TED.com</a></Gear.Item>
+        <Gear.Item>
+          <a href="https://ted.com">TED.com</a>
+        </Gear.Item>
       </Gear>
     )),
   )
@@ -17,7 +19,9 @@ storiesOf('Gear', module)
     'Alignment',
     withInfo()(() => (
       <Gear right>
-        <Gear.Item><a href='https://ted.com'>TED.com</a></Gear.Item>
+        <Gear.Item>
+          <a href="https://ted.com">TED.com</a>
+        </Gear.Item>
       </Gear>
     )),
   )
@@ -26,10 +30,14 @@ storiesOf('Gear', module)
     withInfo()(() => (
       <Gear>
         <Gear.Header>Header</Gear.Header>
-        <Gear.Item><a href='https://ted.com'>TED.com</a></Gear.Item>
+        <Gear.Item>
+          <a href="https://ted.com">TED.com</a>
+        </Gear.Item>
         <Gear.Divider />
         <Gear.Header>Different Header</Gear.Header>
-        <Gear.Item><a href='https://ted.com'>TED.com</a></Gear.Item>
+        <Gear.Item>
+          <a href="https://ted.com">TED.com</a>
+        </Gear.Item>
       </Gear>
-    ))
-  )
+    )),
+  );
