@@ -17,6 +17,6 @@
     "target": "es5",
     "types": ["node", "jest", "react", "core-js"]
   },
-  "include": ["src/**/*", "./jest.setup.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "scripts", "**/story.tsx", "**/test.tsx"]
 }
