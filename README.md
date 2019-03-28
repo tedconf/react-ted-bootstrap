@@ -1,11 +1,11 @@
-# TED Bootstrap (React version)
+# TED Bootstrap
 
-React version of [TED Bootstrap](http://tedlive.ted.com/swatch)
+A React-based design system for internal TED projects.
 
 ## Installation
 
 ```bash
-yarn add @tedprivate/react-ted-bootstrap
+yarn add @tedconf/react-ted-bootstrap
 ```
 
 ## Components List
@@ -20,7 +20,7 @@ yarn add @tedprivate/react-ted-bootstrap
 `ember-ted-button` equivalent
 
 ```
-import { Button } from 'react-ted-bootstrap';
+import { Button } from '@tedconf/react-ted-bootstrap';
 
 const MyComponent = () => {
   <Button>
@@ -37,7 +37,7 @@ const MyComponent = () => {
 Bootstrap's `.container` equivalent
 
 ```
-import { Container } from 'react-ted-bootstrap';
+import { Container } from '@tedconf/react-ted-bootstrap';
 
 const MyComponent = () => {
   <Container>
@@ -46,13 +46,5 @@ const MyComponent = () => {
 }
 
 ```
-
-**[⬆️ back to top](#components-list)**
-
-### DataTable
-
-`ember-ted-table` equivalent
-
-TODO
 
 **[⬆️ back to top](#components-list)**
