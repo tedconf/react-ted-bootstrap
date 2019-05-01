@@ -25,11 +25,11 @@ describe('Dropdown', () => {
 
   it('should register onClick functions passed as props', () => {
     const click = jest.fn();
-    const { getByTestId } = render(
+    const { getAllByTestId } = render(
       <Dropdown options={options} onClick={click} />,
     );
 
-    fireEvent.click(getByTestId('dropdownItem'));
+    fireEvent.click(getAllByTestId('dropdownItem')[0]);
     expect(click).toHaveBeenCalled();
   });
 });
