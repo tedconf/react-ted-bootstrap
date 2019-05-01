@@ -90,7 +90,7 @@ export default class Dropdown extends Component<Props> {
 
     this.setState({ expanded: false });
 
-    this.props.onClick ? this.props.onClick(value) : null;
+    return this.props.onClick ? this.props.onClick(value) : null;
   };
 
   handleClickOutside = (e: Event) => {

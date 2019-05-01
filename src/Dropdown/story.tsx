@@ -1,7 +1,7 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
+import { storiesOf } from '@storybook/react';
+import React from 'react';
 import Dropdown from './index';
 
 storiesOf('Dropdown', module).add(
