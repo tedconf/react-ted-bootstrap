@@ -40,9 +40,8 @@ const styledTable = css`
 `;
 
 const styledThead = css`
-  border-bottom: 1px solid #808080;
   border-color: inherit;
-  border-top: 2px solid #808080;
+  border-top: 1px solid #e3e3e3;
   display: table-header-group;
   vertical-align: middle;
 `;
@@ -70,7 +69,7 @@ const styledRow: StyledRow = {
 
 const styledTh = css`
   font-weight: 700;
-  padding: 15px 10px;
+  padding: 0.75em 1em;
   text-align: left;
 `;
 
@@ -81,13 +80,17 @@ const sortable = css`
 const styledTd = css`
   border-top: 1px solid #e3e3e3;
   line-height: 1.42857;
-  padding: 15px 10px;
+  padding: 1.25em 1em;
   vertical-align: top;
 `;
 
 const flexDiv = css`
   display: flex;
   align-items: center;
+
+  span {
+    margin-right: 0.4em;
+  }
 `;
 
 export default class DataTable extends Component<Props> {
@@ -145,7 +148,7 @@ export default class DataTable extends Component<Props> {
               data-testid="tableHeading"
             >
               <div className={flexDiv}>
-                {h.label}
+                <span>{h.label}</span>
                 {this.renderCaret(index)}
               </div>
             </th>
