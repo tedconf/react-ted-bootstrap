@@ -103,8 +103,37 @@ const dropdownOpen = css`
 `;
 
 export default class NavToggle extends Component<Props> {
+  private wrapperRef: React.RefObject<HTMLInputElement>;
+
   state = {
     expanded: false,
+  };
+
+  constructor(props: Props) {
+    super(props);
+
+    this.wrapperRef = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
+  }
+
+  handleClickOutside = (e: Event) => {
+    const targetNode = e.target instanceof Node ? e.target : null;
+    console.log('called');
+    if (
+      this.wrapperRef &&
+      this.wrapperRef.current &&
+      !this.wrapperRef.current.contains(targetNode) &&
+      this.state.expanded
+    ) {
+      this.toggle();
+    }
   };
 
   toggle = () => {
@@ -118,25 +147,27 @@ export default class NavToggle extends Component<Props> {
     const openClass = expanded ? dropdownOpen : null;
 
     return (
-      <ul className={container}>
-        <li className="event-switcher dropdown">
-          <button
-            aria-expanded={expanded}
-            className={cx(toggleButton, openClass)}
-            onClick={this.toggle}
-            type="button"
-          >
-            {this.props.label}
-            <span className={caret} />
-          </button>
+      <div ref={this.wrapperRef}>
+        <ul className={container}>
+          <li className="event-switcher dropdown">
+            <button
+              aria-expanded={expanded}
+              className={cx(toggleButton, openClass)}
+              onClick={this.toggle}
+              type="button"
+            >
+              {this.props.label}
+              <span className={caret} />
+            </button>
 
-          {expanded ? (
-            <ul className={dropdownMenu} role="menu">
-              {this.props.children}
-            </ul>
-          ) : null}
-        </li>
-      </ul>
+            {expanded ? (
+              <ul className={dropdownMenu} role="menu">
+                {this.props.children}
+              </ul>
+            ) : null}
+          </li>
+        </ul>
+      </div>
     );
   }
 }

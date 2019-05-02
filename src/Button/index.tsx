@@ -35,6 +35,14 @@ const button = css`
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+
+  &:focus,
+  &:active {
+    border-color: #66afe9;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0;
+  }
 `;
 
 const theme = {
