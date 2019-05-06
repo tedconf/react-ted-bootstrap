@@ -125,7 +125,7 @@ export default class NavToggle extends Component<Props> {
 
   handleClickOutside = (e: Event) => {
     const targetNode = e.target instanceof Node ? e.target : null;
-    console.log('called');
+
     if (
       this.wrapperRef &&
       this.wrapperRef.current &&

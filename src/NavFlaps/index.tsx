@@ -30,7 +30,6 @@ const subNavRow = css`
   font-size: 16px;
   list-style: none;
   padding: 0;
-  margin-bottom: 25px;
   width: 100%;
 `;
 
