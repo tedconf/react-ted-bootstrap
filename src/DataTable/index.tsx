@@ -33,10 +33,19 @@ const styledTable = css`
   border-collapse: collapse;
   border-spacing: 0;
   font-family: inherit;
-  font-size: 14px;
-  margin-bottom: 20px;
+  font-size: 1em;
   max-width: 100%;
   width: 100%;
+
+  tr td:nth-of-type(1),
+  tr th:nth-of-type(1) {
+    padding-left: 0;
+  }
+
+  tr td:nth-last-of-type(1),
+  tr th:nth-last-of-type(1) {
+    padding-right: 0;
+  }
 `;
 
 const styledThead = css`
