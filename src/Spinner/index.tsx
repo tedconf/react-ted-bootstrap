@@ -4,6 +4,8 @@ import React from 'react';
 interface Props {
   /** spinner color */
   color?: string;
+  /** spinner size */
+  size?: number | string;
 }
 
 const container = css`
@@ -39,6 +41,34 @@ const container = css`
   .Spinner,
   .Spinner::after {
     border-radius: 50%;
+  }
+
+  .size-1,
+  .size-1:after {
+    height: 15px;
+    width: 15px;
+  }
+
+  .size-2,
+  .size-2:after {
+    height: 25px;
+    width: 25px;
+  }
+
+  .size-3,
+  .size-3:after {
+    height: 40px;
+    width: 40px;
+  }
+
+  .size-4,
+  .size-4:after {
+    height: 60px;
+    width: 60px;
+  }
+
+  .size-5,
+  .size-5:after {
     height: 80px;
     width: 80px;
   }
@@ -52,6 +82,7 @@ const container = css`
       transform: rotate(360deg);
     }
   }
+
   @keyframes Spinner {
     0% {
       transform: rotate(0);
@@ -63,11 +94,11 @@ const container = css`
   }
 `;
 
-export default ({ color = 'red' }: Props) => {
+export default ({ color = 'red', size = '5' }: Props) => {
   const colorClass = color === 'dark' ? 'Spinner--dark' : 'Spinner--red';
   return (
     <div className={container} data-testid="spinner">
-      <div className={`Spinner ${colorClass}`} />
+      <div className={`Spinner ${colorClass} size-${size}`} />
     </div>
   );
 };

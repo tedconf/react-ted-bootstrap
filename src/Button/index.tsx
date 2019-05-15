@@ -5,7 +5,14 @@ interface Props {
   /** text to display in the button */
   children: React.ReactChild;
   /** button type */
-  type?: 'primary' | 'warning' | 'success' | 'info' | 'danger';
+  type?:
+    | 'primary'
+    | 'primaryOutline'
+    | 'warning'
+    | 'success'
+    | 'info'
+    | 'danger'
+    | 'black';
   /** onChange handler */
   onClick?: () => void;
   /** onFocus handler */
@@ -49,6 +56,12 @@ const theme = {
   primary: css`
     background-color: #4e4e4e;
   `,
+  primaryOutline: css`
+    background-color: #fff;
+    background-image: none;
+    border-color: #111;
+    color: #111;
+  `,
   success: css`
     background-color: #61b563;
   `,
@@ -60,6 +73,12 @@ const theme = {
   `,
   danger: css`
     background-color: #e12e28;
+  `,
+  black: css`
+    background-image: none;
+    background-color: #111;
+    color: #fff;
+    text-shadow: none;
   `,
   base: css`
     border-color: #d7d7d7;
