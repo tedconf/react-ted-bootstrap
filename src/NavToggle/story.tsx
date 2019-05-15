@@ -13,8 +13,8 @@ storiesOf('NavToggle', module).add(
       title="Bootstrap"
       rightMenu={
         <NavToggle label="TED2019">
-          <a href="#">TED2019</a>
-          <a href="#">TED2020</a>
+          <a href="https://ted2019.ted.com">TED2019</a>
+          <a href="https://ted2019.ted.com">TED2020</a>
         </NavToggle>
       }
     />

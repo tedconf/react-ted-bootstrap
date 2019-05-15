@@ -78,7 +78,7 @@ export default class NavFlaps extends Component<NavProps> {
       type && type === 'subnav' ? subSelected : selectedStyle;
 
     return (
-      <div data-bootstrap-type="navFlaps">
+      <div data-testid="navFlaps">
         <ul className={wrapperClass}>
           {children.map((elem, index) => {
             const style = index === isSelected ? selectedClass : '';
