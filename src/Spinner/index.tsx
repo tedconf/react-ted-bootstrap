@@ -13,35 +13,36 @@ const container = css`
   overflow: visible;
 
   .Spinner {
-    font-size: 10px;
-    border-top: 4px solid rgba(255, 255, 255, 0.2);
-    border-right: 4px solid rgba(255, 255, 255, 0.2);
+    animation: Spinner 1.1s infinite linear;
     border-bottom: 4px solid rgba(255, 255, 255, 0.2);
     border-left: 4px solid white;
+    border-right: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid rgba(255, 255, 255, 0.2);
+    font-size: 10px;
     transform: translateZ(0);
-    animation: Spinner 1.1s infinite linear;
   }
 
   .Spinner--dark {
-    border-top-color: rgba(0, 0, 0, 0.2);
-    border-right-color: rgba(0, 0, 0, 0.2);
     border-bottom-color: rgba(0, 0, 0, 0.2);
     border-left-color: black;
+    border-right-color: rgba(0, 0, 0, 0.2);
+    border-top-color: rgba(0, 0, 0, 0.2);
   }
 
   .Spinner--red {
-    border-top-color: #d0dede;
-    border-right-color: #d0dede;
     border-bottom-color: #d0dede;
     border-left-color: #ff5041;
+    border-right-color: #d0dede;
+    border-top-color: #d0dede;
   }
 
   .Spinner,
   .Spinner::after {
     border-radius: 50%;
-    width: 80px;
     height: 80px;
+    width: 80px;
   }
+
   @-webkit-keyframes Spinner {
     0% {
       transform: rotate(0);

@@ -8,18 +8,8 @@ import Navbar from './Navbar';
 import NavFlaps, { Tab } from './NavFlaps';
 import NavToggle from './NavToggle';
 import Select from './Select';
+import Spinner from './Spinner';
 import TwistDown from './TwistDown';
 
-export {
-  Button,
-  Container,
-  DataTable,
-  Input,
-  Navbar,
-  Select,
-  Dropdown,
-  TwistDown,
-  NavFlaps,
-  Tab,
-  NavToggle,
-};
+export { Button, Container, DataTable, Dropdown, Input, NavFlaps, NavToggle, Navbar, Select, Spinner, Tab, TwistDown, };
+
