@@ -181,7 +181,7 @@ export default class DataTable extends Component<Props> {
           data-testid="tableRow"
         >
           {row.data.map((cell, cellindex) => (
-            <td className={styledTd} key={cellindex}>
+            <td className={styledTd} key={`dataTable-${index}-${cellindex}`}>
               {cell}
             </td>
           ))}
