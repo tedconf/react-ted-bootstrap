@@ -175,7 +175,7 @@ export default class DataTable extends Component<Props> {
 
       return (
         <tr
-          key={index}
+          key={`dataTabe-${index}`}
           className={styledRow[className]}
           onClick={e => (row.onClick ? this.handleClick(e, row.onClick) : null)}
           data-testid="tableRow"
