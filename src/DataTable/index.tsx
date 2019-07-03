@@ -9,7 +9,7 @@ interface Heading {
 
 interface Row {
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
   data: any[];
 }
 
@@ -128,7 +128,10 @@ export default class DataTable extends Component<Props> {
     return sortDirection === 'asc' && oldCol === newCol ? 'desc' : 'asc';
   };
 
-  private handleClick = (e: React.MouseEvent, onClick: () => void) => {
+  private handleClick = (
+    e: React.MouseEvent,
+    onClick: (e: React.MouseEvent) => void,
+  ) => {
     // Don't call onClick methods if the user is clicking on a link or button
     if (
       e.currentTarget.tagName === 'A' ||
@@ -137,7 +140,7 @@ export default class DataTable extends Component<Props> {
       return false;
     }
 
-    return onClick();
+    return onClick(e);
   };
 
   buildHeadings = (headings: Heading[] | undefined) => {
