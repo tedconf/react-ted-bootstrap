@@ -12,5 +12,18 @@ import Select from './Select';
 import Spinner from './Spinner';
 import TwistDown from './TwistDown';
 
-export { Alert, Button, Container, DataTable, Dropdown, Input, NavFlaps, NavToggle, Navbar, Select, Spinner, Tab, TwistDown, };
-
+export {
+  Alert,
+  Button,
+  Container,
+  DataTable,
+  Dropdown,
+  Input,
+  NavFlaps,
+  NavToggle,
+  Navbar,
+  Select,
+  Spinner,
+  Tab,
+  TwistDown,
+};
