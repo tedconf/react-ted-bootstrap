@@ -18,6 +18,18 @@ export const headings = [
   },
 ];
 
+export const unsortableHeadings = [
+  {
+    label: 'First name',
+  },
+  {
+    label: 'Last name',
+  },
+  {
+    label: 'Twitter',
+  },
+];
+
 export const rows = [
   {
     data: [
@@ -36,13 +48,26 @@ export const rows = [
   },
 ];
 
-storiesOf('DataTable', module).add(
-  'Default',
-  withInfo(`
+storiesOf('DataTable', module)
+  .add(
+    'Default',
+    withInfo(`
       Supported classes: active, success, info, warning, danger.
     `)(() => (
-    <DataTable headings={headings} rows={rows} onSort={action('sort')}>
-      Default
-    </DataTable>
-  )),
-);
+      <DataTable headings={headings} rows={rows} onSort={action('sort')}>
+        Default
+      </DataTable>
+    )),
+  )
+  .add(
+    'Unsortable',
+    withInfo(`No sortable columns`)(() => (
+      <DataTable
+        headings={unsortableHeadings}
+        rows={rows}
+        onSort={action('sort')}
+      >
+        Default
+      </DataTable>
+    )),
+  );

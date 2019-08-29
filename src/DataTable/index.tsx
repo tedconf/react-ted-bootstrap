@@ -161,7 +161,7 @@ export default class DataTable extends Component<Props> {
             >
               <div className={flexDiv}>
                 <span>{h.label}</span>
-                {this.renderCaret(index)}
+                {isSortable ? this.renderCaret(index) : null}
               </div>
             </th>
           );
