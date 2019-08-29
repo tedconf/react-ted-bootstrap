@@ -1,6 +1,6 @@
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { fireEvent, render } from 'react-testing-library';
 import NavFlaps, { Tab } from './index';
 
 const ComponentOne = () => <div data-testid="componentOne">component one</div>;
