@@ -19,6 +19,8 @@ interface Props {
   onFocus?: () => void;
   /** onBlur handler */
   onBlur?: () => void;
+  /** is disabled */
+  disabled?: boolean;
 }
 
 const button = css`
@@ -42,6 +44,12 @@ const button = css`
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
   &:focus,
   &:active {
@@ -88,7 +96,14 @@ const theme = {
   `,
 };
 
-export default ({ type, onClick, onFocus, onBlur, children }: Props) => {
+export default ({
+  type,
+  onClick,
+  onFocus,
+  onBlur,
+  children,
+  disabled,
+}: Props) => {
   const typeClass = type || 'base';
 
   return (
@@ -98,6 +113,7 @@ export default ({ type, onClick, onFocus, onBlur, children }: Props) => {
       onClick={onClick}
       onBlur={onBlur}
       onFocus={onFocus}
+      disabled={disabled}
       data-testid="button"
     >
       {children}

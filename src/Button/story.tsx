@@ -60,4 +60,14 @@ storiesOf('Button', module)
     withInfo(`
     Basic flat button.
   `)(() => <Button type="black">Danger</Button>),
+  )
+  .add(
+    'Disabled',
+    withInfo(`
+    Indicates a disabled button.
+  `)(() => (
+      <Button type="danger" disabled>
+        Danger
+      </Button>
+    )),
   );
