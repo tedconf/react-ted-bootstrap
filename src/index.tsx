@@ -4,6 +4,7 @@ import Button from './Button';
 import Container from './Container';
 import DataTable from './DataTable';
 import Dropdown from './Dropdown';
+import Gear from './Gear';
 import Input from './Input';
 import Navbar from './Navbar';
 import NavFlaps, { Tab } from './NavFlaps';
@@ -18,6 +19,7 @@ export {
   Container,
   DataTable,
   Dropdown,
+  Gear,
   Input,
   NavFlaps,
   NavToggle,
