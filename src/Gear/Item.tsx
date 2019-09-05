@@ -23,4 +23,6 @@ const styles = css`
   }
 `;
 
-export default ({ children }: Props) => <li className={styles}>{children}</li>;
+const Item = ({ children }: Props) => <li className={styles}>{children}</li>;
+
+export default Item;

@@ -94,7 +94,7 @@ const container = css`
   }
 `;
 
-export default ({ color = 'red', size = '5' }: Props) => {
+const Spinner = ({ color = 'red', size = '5' }: Props) => {
   const colorClass = color === 'dark' ? 'Spinner--dark' : 'Spinner--red';
   return (
     <div className={container} data-testid="spinner">
@@ -102,3 +102,5 @@ export default ({ color = 'red', size = '5' }: Props) => {
     </div>
   );
 };
+
+export default Spinner;
