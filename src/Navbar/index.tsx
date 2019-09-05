@@ -38,7 +38,7 @@ const brand = css`
 `;
 
 const inner = css`
-  align-items; center;
+  align-items: center;
   display: flex;
   justify-content: space-between;
 `;
