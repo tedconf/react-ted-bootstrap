@@ -44,7 +44,7 @@ const styledInput = css`
   height: 40px;
 `;
 
-export default ({
+const Input = ({
   type,
   placeholder,
   value,
@@ -109,3 +109,5 @@ export default ({
       );
   }
 };
+
+export default Input;

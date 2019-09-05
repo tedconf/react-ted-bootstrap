@@ -48,7 +48,7 @@ const navRight = css`
   align-items: center;
 `;
 
-export default ({ title, onClick, rightMenu }: Props) => (
+const Navbar = ({ title, onClick, rightMenu }: Props) => (
   <header className={styledNavbar}>
     <Container>
       <div className={inner}>
@@ -66,3 +66,5 @@ export default ({ title, onClick, rightMenu }: Props) => (
     </Container>
   </header>
 );
+
+export default Navbar;

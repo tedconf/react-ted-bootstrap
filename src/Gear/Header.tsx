@@ -14,4 +14,6 @@ const styles = css`
   white-space: nowrap;
 `;
 
-export default ({ children }: Props) => <li className={styles}>{children}</li>;
+const Header = ({ children }: Props) => <li className={styles}>{children}</li>;
+
+export default Header;

@@ -32,6 +32,8 @@ const styledContainer = css`
   }
 `;
 
-export default ({ children }: Props) => (
+const Container = ({ children }: Props) => (
   <div className={styledContainer}>{children}</div>
 );
+
+export default Container;

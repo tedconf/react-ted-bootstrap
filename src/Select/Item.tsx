@@ -37,7 +37,7 @@ const styles = css`
   }
 `;
 
-export default ({ children, value, checked }: Props) => (
+const Item = ({ children, value, checked }: Props) => (
   <Consumer>
     {({ onChange }) => (
       <li
@@ -53,3 +53,5 @@ export default ({ children, value, checked }: Props) => (
     )}
   </Consumer>
 );
+
+export default Item;

@@ -34,7 +34,7 @@ const theme = {
   `,
 };
 
-export default ({ type, onClose, children }: Props) => {
+const Alert = ({ type, onClose, children }: Props) => {
   const typeClass = type || 'info';
 
   return (
@@ -48,3 +48,5 @@ export default ({ type, onClose, children }: Props) => {
     </div>
   );
 };
+
+export default Alert;

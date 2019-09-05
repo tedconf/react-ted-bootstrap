@@ -23,7 +23,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const button = css`
+const styledButton = css`
   background-color: #ededed;
   background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.075));
   border-color: transparent;
@@ -96,7 +96,7 @@ const theme = {
   `,
 };
 
-export default ({
+const Button = ({
   type,
   onClick,
   onFocus,
@@ -108,7 +108,7 @@ export default ({
 
   return (
     <button
-      className={`${button} ${theme[typeClass]}`}
+      className={`${styledButton} ${theme[typeClass]}`}
       type="button"
       onClick={onClick}
       onBlur={onBlur}
@@ -120,3 +120,5 @@ export default ({
     </button>
   );
 };
+
+export default Button;
