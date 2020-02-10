@@ -17,5 +17,11 @@ storiesOf('Input', module)
       />
     )),
   )
-  .add('Password', withInfo()(() => <Input type="password" />))
-  .add('Textarea', withInfo()(() => <Input type="textarea" />));
+  .add(
+    'Password',
+    withInfo()(() => <Input type="password" />),
+  )
+  .add(
+    'Textarea',
+    withInfo()(() => <Input type="textarea" />),
+  );
