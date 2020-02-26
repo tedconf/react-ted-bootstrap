@@ -1,9 +1,10 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { Component } from 'react';
 
 export interface NavProps {
   onClick?: (index: number) => void;
-  type?: string;
+  type?: 'primary' | 'subnav';
   selected?: number;
   children: React.ReactElement[];
 }
@@ -39,16 +40,16 @@ const navLabel = css`
   cursor: pointer;
   margin-right: 30px;
   padding: 7px 0 4px;
-`;
 
-const selectedStyle = css`
-  background-color: transparent;
-  border-bottom-color: #e62b1e;
-`;
+  &[data-selected='true'] {
+    background-color: transparent;
+    border-bottom-color: #e62b1e;
 
-const subSelected = css`
-  background-color: transparent;
-  border-bottom-color: #666;
+    &[data-type='subnav'] {
+      background-color: transparent;
+      border-bottom-color: #666;
+    }
+  }
 `;
 
 export const Tab = ({ content }: TabProps) => <div>{content}</div>;
@@ -74,21 +75,19 @@ export default class NavFlaps extends Component<NavProps> {
     const { children, type, selected } = this.props;
     const isSelected = selected || this.state.selected;
     const wrapperClass = type && type === 'subnav' ? subNavRow : navRow;
-    const selectedClass =
-      type && type === 'subnav' ? subSelected : selectedStyle;
 
     return (
       <div data-testid="navFlaps">
-        <ul className={wrapperClass}>
+        <ul css={wrapperClass}>
           {children.map((elem, index) => {
-            const style = index === isSelected ? selectedClass : '';
-
             return (
               <li
-                className={cx(navLabel, style)}
+                css={navLabel}
+                data-selected={index === isSelected}
+                data-testid={`navLabel${index}`}
+                data-type={type || 'primary'}
                 key={index}
                 onClick={() => this.doClick(index)}
-                data-testid={`navLabel${index}`}
               >
                 {elem.props.label}
               </li>

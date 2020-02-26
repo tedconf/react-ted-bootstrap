@@ -1,9 +1,9 @@
-import { css } from 'emotion';
-import React from 'react';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 
 interface Props {
   /** spinner color */
-  color?: string;
+  color?: 'red' | 'dark';
   /** spinner size */
   size?: number | string;
 }
@@ -24,14 +24,14 @@ const container = css`
     transform: translateZ(0);
   }
 
-  .Spinner--dark {
+  .Spinner[data-color='dark'] {
     border-bottom-color: rgba(0, 0, 0, 0.2);
     border-left-color: black;
     border-right-color: rgba(0, 0, 0, 0.2);
     border-top-color: rgba(0, 0, 0, 0.2);
   }
 
-  .Spinner--red {
+  .Spinner[data-color='red'] {
     border-bottom-color: #d0dede;
     border-left-color: #ff5041;
     border-right-color: #d0dede;
@@ -43,32 +43,32 @@ const container = css`
     border-radius: 50%;
   }
 
-  .size-1,
-  .size-1:after {
+  .Spinner[data-size='1'],
+  .Spinner[data-size='1']:after {
     height: 15px;
     width: 15px;
   }
 
-  .size-2,
-  .size-2:after {
+  .Spinner[data-size='2'],
+  .Spinner[data-size='2']:after {
     height: 25px;
     width: 25px;
   }
 
-  .size-3,
-  .size-3:after {
+  .Spinner[data-size='3'],
+  .Spinner[data-size='3']:after {
     height: 40px;
     width: 40px;
   }
 
-  .size-4,
-  .size-4:after {
+  .Spinner[data-size='4'],
+  .Spinner[data-size='4']:after {
     height: 60px;
     width: 60px;
   }
 
-  .size-5,
-  .size-5:after {
+  .Spinner[data-size='5'],
+  .Spinner[data-size='5']:after {
     height: 80px;
     width: 80px;
   }
@@ -95,10 +95,9 @@ const container = css`
 `;
 
 const Spinner = ({ color = 'red', size = '5' }: Props) => {
-  const colorClass = color === 'dark' ? 'Spinner--dark' : 'Spinner--red';
   return (
-    <div className={container} data-testid="spinner">
-      <div className={`Spinner ${colorClass} size-${size}`} />
+    <div css={container} data-testid="spinner">
+      <div className="Spinner" data-color={color} data-size={size} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 
 interface Props {
@@ -17,36 +18,33 @@ const alertBox = css`
   font-family: inherit;
   margin-bottom: 20px;
   padding: 15px;
+
+  &[data-type='success'] {
+    background-color: #e0efd5;
+  }
+
+  &[data-type='info'] {
+    background-color: #deeef5;
+  }
+
+  &[data-type='warning'] {
+    background-color: #fcf7e7;
+  }
+
+  &[data-type='danger'] {
+    background-color: #f2d2cf;
+  }
 `;
 
-const theme = {
-  success: css`
-    background-color: #e0efd5;
-  `,
-  info: css`
-    background-color: #deeef5;
-  `,
-  warning: css`
-    background-color: #fcf7e7;
-  `,
-  danger: css`
-    background-color: #f2d2cf;
-  `,
-};
-
-const Alert = ({ type, onClose, children }: Props) => {
-  const typeClass = type || 'info';
-
-  return (
-    <div data-testid="alert" className={cx(alertBox, theme[typeClass])}>
-      {children}
-      {onClose ? (
-        <button data-testid="alertClose" type="button" onClick={onClose}>
-          &times;
-        </button>
-      ) : null}
-    </div>
-  );
-};
+const Alert = ({ type = 'info', onClose, children }: Props) => (
+  <div css={alertBox} data-type={type} data-testid="alert">
+    {children}
+    {onClose ? (
+      <button data-testid="alertClose" type="button" onClick={onClose}>
+        &times;
+      </button>
+    ) : null}
+  </div>
+);
 
 export default Alert;

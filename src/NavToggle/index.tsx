@@ -1,4 +1,5 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { Component } from 'react';
 
 interface Props {
@@ -36,6 +37,15 @@ const toggleButton = css`
   font-size: 18px;
   outline: none;
   padding: 19px 15px;
+
+  &[data-expanded='true'] {
+    background-color: #333;
+    color: #eee;
+
+    span {
+      transform: rotate(180deg);
+    }
+  }
 `;
 
 const caret = css`
@@ -93,15 +103,6 @@ const dropdownMenu = css`
   }
 `;
 
-const dropdownOpen = css`
-  background-color: #333;
-  color: #eee;
-
-  span {
-    transform: rotate(180deg);
-  }
-`;
-
 export default class NavToggle extends Component<Props> {
   private wrapperRef: React.RefObject<HTMLInputElement>;
 
@@ -144,24 +145,24 @@ export default class NavToggle extends Component<Props> {
 
   render() {
     const { expanded } = this.state;
-    const openClass = expanded ? dropdownOpen : null;
 
     return (
       <div ref={this.wrapperRef}>
-        <ul className={container}>
+        <ul css={container}>
           <li className="event-switcher dropdown">
             <button
               aria-expanded={expanded}
-              className={cx(toggleButton, openClass)}
+              css={toggleButton}
+              data-expanded={expanded}
               onClick={this.toggle}
               type="button"
             >
               {this.props.label}
-              <span className={caret} />
+              <span css={caret} />
             </button>
 
             {expanded ? (
-              <ul className={dropdownMenu} role="menu">
+              <ul css={dropdownMenu} role="menu">
                 {this.props.children}
               </ul>
             ) : null}

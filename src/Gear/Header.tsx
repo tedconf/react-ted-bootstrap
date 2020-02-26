@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 
 export interface Props {
@@ -14,6 +15,6 @@ const styles = css`
   white-space: nowrap;
 `;
 
-const Header = ({ children }: Props) => <li className={styles}>{children}</li>;
+const Header = ({ children }: Props) => <li css={styles}>{children}</li>;
 
 export default Header;

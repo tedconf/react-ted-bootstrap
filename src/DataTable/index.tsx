@@ -1,4 +1,5 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { Component } from 'react';
 import Caret from '../utils/Caret';
 
@@ -22,10 +23,6 @@ interface Props {
   /** A callback function when a column heading is sorted,
    * returns column index and sort direction */
   onSort?: (column: number, sortDirection: string) => void;
-}
-
-interface StyledRow {
-  [key: string]: string;
 }
 
 const styledTable = css`
@@ -55,35 +52,40 @@ const styledThead = css`
   vertical-align: middle;
 `;
 
-const styledRow: StyledRow = {
-  base: css`
+const styledRow = css`
+  &[data-style='base'] {
     background-color: transparent;
-  `,
-  active: css`
+  }
+
+  &[data-style='active'] {
     background-color: whitesmoke;
-  `,
-  success: css`
+  }
+
+  &[data-style='success'] {
     background-color: #e0efd5;
-  `,
-  info: css`
+  }
+
+  &[data-style='info'] {
     background-color: #deeef5;
-  `,
-  warning: css`
+  }
+
+  &[data-style='warning'] {
     background-color: #fcf7e7;
-  `,
-  danger: css`
+  }
+
+  &[data-style='danger'] {
     background-color: #f2d2cf;
-  `,
-};
+  }
+`;
 
 const styledTh = css`
   font-weight: 700;
   padding: 0.75em 1em;
   text-align: left;
-`;
 
-const sortable = css`
-  cursor: pointer;
+  &[data-sortable='true'] {
+    cursor: pointer;
+  }
 `;
 
 const styledTd = css`
@@ -150,16 +152,16 @@ export default class DataTable extends Component<Props> {
       <tr>
         {headings.map((h, index) => {
           const isSortable = h.sortable !== undefined && h.sortable;
-          const sortableClass = isSortable ? sortable : '';
 
           return (
             <th
               key={index}
-              className={cx(styledTh, sortableClass)}
+              css={styledTh}
               onClick={() => this.onSort(index, isSortable)}
               data-testid="tableHeading"
+              data-sortable={isSortable}
             >
-              <div className={flexDiv}>
+              <div css={flexDiv}>
                 <span>{h.label}</span>
                 {isSortable ? this.renderCaret(index) : null}
               </div>
@@ -174,17 +176,16 @@ export default class DataTable extends Component<Props> {
     if (!rows) return;
 
     return rows.map((row, index) => {
-      const className = row.className || 'base';
-
       return (
         <tr
           key={`dataTabe-${index}`}
-          className={styledRow[className]}
+          css={styledRow}
           onClick={e => (row.onClick ? this.handleClick(e, row.onClick) : null)}
           data-testid="tableRow"
+          data-style={row.className || 'base'}
         >
           {row.data.map((cell, cellindex) => (
-            <td className={styledTd} key={`dataTable-${index}-${cellindex}`}>
+            <td css={styledTd} key={`dataTable-${index}-${cellindex}`}>
               {cell}
             </td>
           ))}
@@ -205,8 +206,8 @@ export default class DataTable extends Component<Props> {
     const { headings, rows } = this.props;
 
     return (
-      <table className={styledTable}>
-        <thead className={styledThead} data-testid="tableHead">
+      <table css={styledTable}>
+        <thead css={styledThead} data-testid="tableHead">
           {this.buildHeadings(headings)}
         </thead>
         <tbody data-testid="tableBody">{this.buildRows(rows)}</tbody>

@@ -1,4 +1,5 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { Component } from 'react';
 import Caret from '../utils/Caret';
 
@@ -39,10 +40,10 @@ const dropdownList = css`
   text-align: left;
   top: 100%;
   z-index: 1000;
-`;
 
-const expandedStyle = css`
-  display: block !important;
+  &[data-expanded='true'] {
+    display: block !important;
+  }
 `;
 
 const dropdownItem = css`
@@ -112,11 +113,10 @@ export default class Dropdown extends Component<Props> {
 
   render() {
     const { selected, expanded } = this.state;
-    const expandedClass = expanded ? expandedStyle : '';
     const label = selected ? selected : this.props.options[0].label;
     const options = this.props.options.map(opt => (
       <li
-        className={dropdownItem}
+        css={dropdownItem}
         key={`${opt.label}${opt.index}`}
         onClick={e => this.onClick(e, opt.label)}
         data-testid="dropdownItem"
@@ -127,13 +127,14 @@ export default class Dropdown extends Component<Props> {
 
     return (
       <div style={{ position: 'relative' }} ref={this.wrapperRef}>
-        <div className={styledLabel} onClick={() => this.toggleExpanded()}>
+        <div css={styledLabel} onClick={() => this.toggleExpanded()}>
           <span style={{ marginRight: '6px' }}>{label}</span>
           <Caret />
         </div>
         <ul
-          className={cx(dropdownList, expandedClass)}
           aria-expanded={expanded}
+          css={dropdownList}
+          data-expanded={expanded}
           data-testid="dropdownList"
         >
           {options}

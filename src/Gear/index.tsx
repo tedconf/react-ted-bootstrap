@@ -1,4 +1,5 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { Component } from 'react';
 import Icon from '../utils/Gear';
 import Divider from './Divider';
@@ -38,14 +39,12 @@ const styledList = css`
   text-align: left;
   top: 100%;
   z-index: 1000;
-`;
 
-const align = {
-  right: css`
+  &[data-align='right'] {
     right: 0;
     left: auto;
-  `,
-};
+  }
+`;
 
 export default class Gear extends Component<Props> {
   static Header = Header;
@@ -65,14 +64,17 @@ export default class Gear extends Component<Props> {
   render() {
     const { children, right } = this.props;
     const { listOpen } = this.state;
-    const alignClass = right ? align['right'] : '';
 
     return (
-      <div className={styledDropdown}>
-        <div className={styledToggle} onClick={() => this.toggle()}>
+      <div css={styledDropdown}>
+        <div css={styledToggle} onClick={() => this.toggle()}>
           <Icon />
         </div>
-        {listOpen && <ul className={cx(styledList, alignClass)}>{children}</ul>}
+        {listOpen && (
+          <ul css={styledList} data-align={right ? 'right' : 'left'}>
+            {children}
+          </ul>
+        )}
       </div>
     );
   }
