@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 import mediaQueries from '../utils/media-queries';
 
@@ -33,7 +34,7 @@ const styledContainer = css`
 `;
 
 const Container = ({ children }: Props) => (
-  <div className={styledContainer}>{children}</div>
+  <div css={styledContainer}>{children}</div>
 );
 
 export default Container;

@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 
 interface Props {
@@ -58,43 +59,48 @@ const styledButton = css`
       0 0 8px rgba(102, 175, 233, 0.6);
     outline: 0;
   }
-`;
 
-const theme = {
-  primary: css`
+  &[data-type='primary'] {
     background-color: #4e4e4e;
-  `,
-  primaryOutline: css`
+  }
+
+  &[data-type='primaryOutline'] {
     background-color: #fff;
     background-image: none;
     border-color: #111;
     color: #111;
-  `,
-  success: css`
+  }
+
+  &[data-type='success'] {
     background-color: #61b563;
-  `,
-  info: css`
+  }
+
+  &[data-type='info'] {
     background-color: #71c1d9;
-  `,
-  warning: css`
+  }
+
+  &[data-type='warning'] {
     background-color: #eaa04a;
-  `,
-  danger: css`
+  }
+
+  &[data-type='danger'] {
     background-color: #e12e28;
-  `,
-  black: css`
+  }
+
+  &[data-type='black'] {
     background-image: none;
     background-color: #111;
     color: #fff;
     text-shadow: none;
-  `,
-  base: css`
+  }
+
+  &[data-type='default'] {
     border-color: #d7d7d7;
     color: #444;
     font-weight: 700;
     text-shadow: 0 1px 0 white;
-  `,
-};
+  }
+`;
 
 const Button = ({
   type,
@@ -103,22 +109,19 @@ const Button = ({
   onBlur,
   children,
   disabled,
-}: Props) => {
-  const typeClass = type || 'base';
-
-  return (
-    <button
-      className={`${styledButton} ${theme[typeClass]}`}
-      type="button"
-      onClick={onClick}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      disabled={disabled}
-      data-testid="button"
-    >
-      {children}
-    </button>
-  );
-};
+}: Props) => (
+  <button
+    css={styledButton}
+    type="button"
+    onClick={onClick}
+    onBlur={onBlur}
+    onFocus={onFocus}
+    disabled={disabled}
+    data-testid="button"
+    data-type={type || 'default'}
+  >
+    {children}
+  </button>
+);
 
 export default Button;
