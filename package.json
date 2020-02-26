@@ -2,7 +2,7 @@
   "name": "@tedconf/react-ted-bootstrap",
   "author": "Jon Bellah <jon@ted.com>",
   "license": "MIT",
-  "version": "0.6.11",
+  "version": "1.0.0",
   "description": "A shared set of UI components for internal projects",
   "main": "build/index.js",
   "module": "build/index.es.js",
