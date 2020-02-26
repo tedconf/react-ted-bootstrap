@@ -1,4 +1,5 @@
-import { css, cx } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 
 interface Props {
@@ -38,10 +39,12 @@ const styles = css`
       0 0 8px rgba(102, 175, 233, 0.6);
     outline: 0;
   }
-`;
 
-const styledInput = css`
-  height: 40px;
+  &[type='text'],
+  &[type='password'],
+  &[type='email'] {
+    height: 40px;
+  }
 `;
 
 const Input = ({
@@ -57,39 +60,39 @@ const Input = ({
     case 'password':
       return (
         <input
-          type="password"
-          placeholder={placeholder}
-          value={value}
+          css={styles}
+          data-testid="password"
+          onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={onBlur}
-          className={cx(styles, styledInput)}
-          data-testid="password"
+          placeholder={placeholder}
+          type="password"
+          value={value}
         />
       );
     case 'email':
       return (
         <input
-          type="email"
-          placeholder={placeholder}
-          value={value}
+          css={styles}
+          data-testid="email"
+          onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={onBlur}
-          className={cx(styles, styledInput)}
-          data-testid="email"
+          placeholder={placeholder}
+          type="email"
+          value={value}
         />
       );
     case 'textarea':
       return (
         <textarea
-          className={styles}
-          placeholder={placeholder}
-          value={value}
+          css={styles}
+          data-testid="textarea"
+          onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={onBlur}
-          data-testid="textarea"
+          placeholder={placeholder}
+          value={value}
         >
           {children}
         </textarea>
@@ -97,14 +100,14 @@ const Input = ({
     default:
       return (
         <input
-          type="text"
-          className={cx(styles, styledInput)}
-          placeholder={placeholder}
-          value={value}
+          css={styles}
+          data-testid="text"
+          onBlur={onBlur}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={onBlur}
-          data-testid="text"
+          placeholder={placeholder}
+          type="text"
+          value={value}
         />
       );
   }

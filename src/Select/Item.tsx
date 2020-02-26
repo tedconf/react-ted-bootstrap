@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 import Check from '../utils/Check';
 import { Consumer } from './context';
@@ -41,11 +42,11 @@ const Item = ({ children, value, checked }: Props) => (
   <Consumer>
     {({ onChange }) => (
       <li
-        className={styles}
+        css={styles}
+        data-testid={`item-${value}`}
         onClick={() => onChange(value)}
         onKeyPress={() => onChange(value)}
         role="presentation"
-        data-testid={`item-${value}`}
       >
         {children}
         {checked ? <Check /> : false}

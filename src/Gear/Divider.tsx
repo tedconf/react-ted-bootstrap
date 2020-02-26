@@ -1,5 +1,5 @@
-import React from 'react';
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 
 const styles = css`
   background-color: #e5e5e5;
@@ -8,6 +8,6 @@ const styles = css`
   overflow: hidden;
 `;
 
-const Divider = () => <li className={styles} />;
+const Divider = () => <li css={styles} />;
 
 export default Divider;

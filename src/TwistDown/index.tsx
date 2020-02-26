@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React, { Component } from 'react';
 import Caret from '../utils/Caret';
 
@@ -52,15 +53,15 @@ export default class TwistDown extends Component<Props> {
     const rotate = this.state.open ? 'none' : 'rotate(-90deg)';
 
     return (
-      <div className={container}>
+      <div css={container}>
         <button
-          className={button}
-          type="button"
-          onClick={this.toggleOpen}
+          css={button}
           data-testid="button"
+          onClick={this.toggleOpen}
+          type="button"
         >
           <Caret rotate={rotate} />
-          <span className={label} data-testid="label">
+          <span css={label} data-testid="label">
             {this.props.label}
           </span>
         </button>

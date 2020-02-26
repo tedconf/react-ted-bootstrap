@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 
 export interface Props {
@@ -23,6 +24,6 @@ const styles = css`
   }
 `;
 
-const Item = ({ children }: Props) => <li className={styles}>{children}</li>;
+const Item = ({ children }: Props) => <li css={styles}>{children}</li>;
 
 export default Item;

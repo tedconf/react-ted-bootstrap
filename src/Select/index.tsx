@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import React, { Component } from 'react';
 import { Provider } from './context';
 import Item from './Item';
@@ -14,9 +16,9 @@ export interface HeaderProps {
 }
 
 const Header = ({ children }: HeaderProps) => (
-  <li className={styles.headerStyles}>{children}</li>
+  <li css={styles.headerStyles}>{children}</li>
 );
-const Divider = () => <li className={styles.dividerStyles} />;
+const Divider = () => <li css={styles.dividerStyles} />;
 
 export default class Select extends Component<Props> {
   private wrapperRef: React.RefObject<HTMLInputElement>;
@@ -73,15 +75,15 @@ export default class Select extends Component<Props> {
 
     return (
       <Provider value={this.state}>
-        <div className={styles.container} ref={this.wrapperRef}>
+        <div css={styles.container} ref={this.wrapperRef}>
           <button
             type="button"
-            className={styles.styledSelect}
+            css={styles.styledSelect}
             onClick={this.toggleOpen}
             data-testid="select"
           >
             {label}
-            <span className={styles.styledCaret}>
+            <span css={styles.styledCaret}>
               <svg width="14" height="9" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M7 8a.828.828 0 0 1-.594-.252l-5.16-5.28a.874.874 0 0 1 0-1.216.827.827 0 0 1 1.189 0L7 5.924l4.565-4.672a.827.827 0 0 1 1.189 0 .874.874 0 0 1 0 1.216l-5.16 5.28A.828.828 0 0 1 7 8z"
@@ -92,7 +94,7 @@ export default class Select extends Component<Props> {
               </svg>
             </span>
           </button>
-          {listOpen && <ul className={styles.styledList}>{children}</ul>}
+          {listOpen && <ul css={styles.styledList}>{children}</ul>}
         </div>
       </Provider>
     );

@@ -1,4 +1,5 @@
-import { css } from 'emotion';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 import Container from '../Container';
 import Logo from './Logo';
@@ -49,19 +50,19 @@ const navRight = css`
 `;
 
 const Navbar = ({ title, onClick, rightMenu }: Props) => (
-  <header className={styledNavbar}>
+  <header css={styledNavbar}>
     <Container>
-      <div className={inner}>
+      <div css={inner}>
         <button
           type="button"
           data-testid="button"
-          className={brand}
+          css={brand}
           onClick={onClick}
         >
           <Logo />
           <span data-testid="title">{title}</span>
         </button>
-        <div className={navRight}>{rightMenu}</div>
+        <div css={navRight}>{rightMenu}</div>
       </div>
     </Container>
   </header>
