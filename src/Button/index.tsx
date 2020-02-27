@@ -5,8 +5,8 @@ import React from 'react';
 interface Props {
   /** text to display in the button */
   children: React.ReactChild;
-  /** button type */
-  type?:
+  /** button variant */
+  variant?:
     | 'primary'
     | 'primaryOutline'
     | 'warning'
@@ -14,6 +14,8 @@ interface Props {
     | 'info'
     | 'danger'
     | 'black';
+  /** button type */
+  type?: 'button' | 'submit' | 'reset';
   /** onChange handler */
   onClick?: () => void;
   /** onFocus handler */
@@ -60,41 +62,41 @@ const styledButton = css`
     outline: 0;
   }
 
-  &[data-type='primary'] {
+  &[data-variant='primary'] {
     background-color: #4e4e4e;
   }
 
-  &[data-type='primaryOutline'] {
+  &[data-variant='primaryOutline'] {
     background-color: #fff;
     background-image: none;
     border-color: #111;
     color: #111;
   }
 
-  &[data-type='success'] {
+  &[data-variant='success'] {
     background-color: #61b563;
   }
 
-  &[data-type='info'] {
+  &[data-variant='info'] {
     background-color: #71c1d9;
   }
 
-  &[data-type='warning'] {
+  &[data-variant='warning'] {
     background-color: #eaa04a;
   }
 
-  &[data-type='danger'] {
+  &[data-variant='danger'] {
     background-color: #e12e28;
   }
 
-  &[data-type='black'] {
+  &[data-variant='black'] {
     background-image: none;
     background-color: #111;
     color: #fff;
     text-shadow: none;
   }
 
-  &[data-type='default'] {
+  &[data-variant='default'] {
     border-color: #d7d7d7;
     color: #444;
     font-weight: 700;
@@ -103,6 +105,7 @@ const styledButton = css`
 `;
 
 const Button = ({
+  variant,
   type,
   onClick,
   onFocus,
@@ -112,13 +115,13 @@ const Button = ({
 }: Props) => (
   <button
     css={styledButton}
-    type="button"
-    onClick={onClick}
-    onBlur={onBlur}
-    onFocus={onFocus}
-    disabled={disabled}
     data-testid="button"
-    data-type={type || 'default'}
+    data-variant={variant || 'default'}
+    disabled={disabled}
+    onBlur={onBlur}
+    onClick={onClick}
+    onFocus={onFocus}
+    type={type || 'button'}
   >
     {children}
   </button>
