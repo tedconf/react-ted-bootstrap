@@ -130,3 +130,83 @@ const MyComponent = () => (
 ```
 
 **[⬆️ back to top](#components-list)**
+
+### Navbar
+
+```
+import { Navbar } from '@tedconf/react-ted-bootstrap';
+
+const MyComponent = () => (
+  <Navbar title="Bootstrap" onClick={click} />
+)
+```
+
+**[⬆️ back to top](#components-list)**
+
+### NavFlaps
+
+```
+import { NavFlaps, Tab } from '@tedconf/react-ted-bootstrap';
+
+const MyComponent = () => (
+  <NavFlaps>
+    <Tab label="Tab 1" content={<ComponentOne />} />
+    <Tab label="Tab 2" content={<ComponentTwo />} />
+  </NavFlaps>
+)
+```
+
+**[⬆️ back to top](#components-list)**
+
+### NavToggle
+
+```
+import { NavFlaps, Tab } from '@tedconf/react-ted-bootstrap';
+
+const MyComponent = () => (
+  <NavToggle label="TED2019">
+    <a href="https://ted2019.ted.com">TED2019</a>
+    <a href="https://ted2019.ted.com">TED2020</a>
+  </NavToggle>
+)
+```
+
+**[⬆️ back to top](#components-list)**
+
+### Select
+
+```
+import { Select } from '@tedconf/react-ted-bootstrap';
+
+const MyComponent = () => (
+  <Select label="My Select" onChange={change}>
+    <Select.Item value="value">Select Item</Select.Item>
+  </Select>
+)
+```
+
+**[⬆️ back to top](#components-list)**
+
+### Spinner
+
+```
+import { Spinner } from '@tedconf/react-ted-bootstrap';
+
+const MyComponent = () => (
+  <Spinner />
+)
+```
+
+**[⬆️ back to top](#components-list)**
+
+### TwistDown
+
+```
+import { TwistDown } from '@tedconf/react-ted-bootstrap';
+
+const MyComponent = () => (
+  <TwistDown label="twistdown">My TwistDown Content</TwistDown>
+)
+```
+
+**[⬆️ back to top](#components-list)**
